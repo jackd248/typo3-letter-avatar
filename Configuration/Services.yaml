@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    KonradMichalik\Typo3LetterAvatar\:
+        resource: '../Classes/*'
+        exclude: '../Classes/Domain/Model/*'
