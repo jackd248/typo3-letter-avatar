@@ -1,0 +1,6 @@
+# cat=general/enable/10; type=options[Imagick=imagick,GraphicsMagick=gmagick]; label=Image driver
+general.imageDriver = imagick
+# cat=general/enable/20; type=options[Stringify=stringify,Random=random]; label=Color mode
+general.colorMode = stringify
+# cat=general/enable/30; type=boolean; label=Prioritize name instead of username
+general.prioritizeRealName = 1
