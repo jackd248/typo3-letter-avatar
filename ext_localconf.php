@@ -24,7 +24,11 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
     // convert initial letter in uppercase
     'uppercase' => false,
 
-    'colorMode' => \KonradMichalik\Typo3LetterAvatar\Enum\ColorMode::STRINGIFY->value,
+    'prioritizeRealName' => true,
+
+    'avatarPath' => '/typo3temp/assets/avatars/',
+
+    // 'colorMode' => \KonradMichalik\Typo3LetterAvatar\Enum\ColorMode::STRINGIFY->value,
 
     // List of foreground colors to be used, randomly selected based on name supplied
     'foregrounds' => [
@@ -55,7 +59,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
     // 1. Theme name as string: 'colorful'
     // 2. Or array of string name: ['grayscale-light', 'grayscale-dark']
     // 3. Or wildcard "*" to use all defined themes
-    'theme' => ['colorful'],
+    // 'theme' => ['colorful'],
 
     // Predefined themes
     // Available theme attributes are:

@@ -6,8 +6,8 @@ namespace KonradMichalik\Typo3LetterAvatar\Utility;
 
 use KonradMichalik\Typo3LetterAvatar\Configuration;
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageDriver;
-use KonradMichalik\Typo3LetterAvatar\Service\ImagickAvatar;
-use KonradMichalik\Typo3LetterAvatar\Service\LetterAvatarInterface;
+use KonradMichalik\Typo3LetterAvatar\Image\ImagickAvatar;
+use KonradMichalik\Typo3LetterAvatar\Image\LetterAvatarInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 

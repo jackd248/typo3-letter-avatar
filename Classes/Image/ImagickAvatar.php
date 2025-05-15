@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KonradMichalik\Typo3LetterAvatar\Service;
+namespace KonradMichalik\Typo3LetterAvatar\Image;
 
 use InvalidArgumentException;
 use KonradMichalik\Typo3LetterAvatar\Configuration;
@@ -13,22 +13,22 @@ class ImagickAvatar extends AbstractImageProvider implements LetterAvatarInterfa
     public function generate(): \Imagick
     {
         $this->nameInitials = $this->getInitials($this->name);
-        $this->backgroundColor = $this->backgroundColor ?: $this->stringToColor($this->name);
-        $this->foregroundColor = $this->foregroundColor ?: '#fafafa';
+        $backgroundColor = $this->resolveBackgroundColor();
+        $foregroundColor = $this->resolveForegroundColor();
 
         $canvas = new \Imagick();
         $canvas->newImage(480, 480, new \ImagickPixel('transparent'));
         $canvas->setImageFormat('png');
 
         $circle = new \ImagickDraw();
-        $circle->setFillColor(new \ImagickPixel($this->backgroundColor));
+        $circle->setFillColor(new \ImagickPixel($backgroundColor));
         $circle->circle(240, 240, 240, 0);
         $canvas->drawImage($circle);
 
         $text = new \ImagickDraw();
         $text->setFont(GeneralUtility::getFileAbsFileName('EXT:' . Configuration::EXT_KEY . '/Resources/Public/Fonts/arial-bold.ttf'));
         $text->setFontSize(220);
-        $text->setFillColor(new \ImagickPixel($this->foregroundColor));
+        $text->setFillColor(new \ImagickPixel($foregroundColor));
         $text->setTextAlignment(\Imagick::ALIGN_CENTER);
         $text->annotation(240, 320, $this->nameInitials);
 

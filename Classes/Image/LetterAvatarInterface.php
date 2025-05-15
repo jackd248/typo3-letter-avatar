@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KonradMichalik\Typo3LetterAvatar\Service;
+namespace KonradMichalik\Typo3LetterAvatar\Image;
 interface LetterAvatarInterface
 {
     function generate();

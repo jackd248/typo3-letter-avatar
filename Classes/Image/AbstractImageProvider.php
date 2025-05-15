@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
-namespace KonradMichalik\Typo3LetterAvatar\Service;
+namespace KonradMichalik\Typo3LetterAvatar\Image;
 
+
+use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
+use KonradMichalik\Typo3LetterAvatar\Utility\ColorUtility;
 
 abstract class AbstractImageProvider
 {
@@ -18,7 +21,9 @@ abstract class AbstractImageProvider
         protected string $name,
         protected int $size = 48,
         protected string $foregroundColor = '',
-        protected string $backgroundColor = ''
+        protected string $backgroundColor = '',
+        protected ColorMode $mode = ColorMode::CUSTOM,
+        protected string $theme = '',
     )
     {
     }
@@ -29,8 +34,40 @@ abstract class AbstractImageProvider
             $this->size,
             $this->foregroundColor,
             $this->backgroundColor,
+            $this->mode->value,
+            $this->theme,
         ];
         return md5(implode('_', $parts));
+    }
+
+    protected function resolveForegroundColor(): string
+    {
+        switch ($this->mode) {
+            case ColorMode::CUSTOM:
+            default:
+                return $this->foregroundColor;
+            case ColorMode::STRINGIFY:
+                return ColorUtility::getRandomColors()['foreground'];
+            case ColorMode::RANDOM:
+                return ColorUtility::getRandomColors()['foreground'];
+            case ColorMode::THEME:
+                return ColorUtility::getRandomThemeColors()['foreground'];
+        }
+    }
+
+    protected function resolveBackgroundColor(): string
+    {
+        switch ($this->mode) {
+            case ColorMode::CUSTOM:
+            default:
+                return $this->backgroundColor;
+            case ColorMode::STRINGIFY:
+                return $this->stringToColor($this->name);
+            case ColorMode::RANDOM:
+                return ColorUtility::getRandomColors()['background'];
+            case ColorMode::THEME:
+                return ColorUtility::getRandomThemeColors()['background'];
+        }
     }
 
     protected function getInitials(string $name): string

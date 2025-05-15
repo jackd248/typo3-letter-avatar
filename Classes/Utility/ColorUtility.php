@@ -5,18 +5,23 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3LetterAvatar\Utility;
 
 use KonradMichalik\Typo3LetterAvatar\Configuration;
+use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ColorUtility
 {
-    public static function getColors(): array
+    public static function getColors(ColorMode|string $colorMode = null): array
     {
-        $colorMode = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get(Configuration::EXT_KEY)['general']['colorMode'];
+        $colorMode = $colorMode ?: GeneralUtility::makeInstance(ExtensionConfiguration::class)->get(Configuration::EXT_KEY)['general']['colorMode'];
+        if (is_string($colorMode)) {
+            $colorMode = ColorMode::from($colorMode);
+        }
+
         switch ($colorMode) {
-            case 'random':
+            case ColorMode::RANDOM:
                 return self::getRandomColors();
-            case 'theme':
+            case ColorMode::THEME:
                 return self::getRandomThemeColors();
             default:
                 return [
@@ -55,7 +60,7 @@ class ColorUtility
 
     public static function getThemeColors(): array
     {
-        $themeConfiguration = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']['theme'];
+        $themeConfiguration = ConfigurationUtility::getConfiguration('theme');
 
         $themeConfiguration = is_array($themeConfiguration) ? $themeConfiguration : [$themeConfiguration];
         $foregroundColors = [];
