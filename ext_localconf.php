@@ -8,7 +8,7 @@ defined('TYPO3') || die();
 
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['backend']['avatarProviders']['letterAvatar'] = [
     'provider' => \KonradMichalik\Typo3LetterAvatar\AvatarProvider\LetterAvatarProvider::class,
-    'after' => ['defaultAvatarProvider']
+    'after' => ['defaultAvatarProvider'],
 ];
 
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] = [

@@ -38,7 +38,6 @@ class ImagickAvatar extends AbstractImageProvider implements LetterAvatarInterfa
         return $canvas;
     }
 
-
     public function saveAs($path, $mimetype = self::MIME_TYPE_PNG, $quality = 90): bool
     {
         if (empty($path)) {
@@ -46,7 +45,7 @@ class ImagickAvatar extends AbstractImageProvider implements LetterAvatarInterfa
         }
 
         if (!in_array($mimetype, self::MIME_TYPES, true)) {
-            throw new InvalidArgumentException("Invalid mimetype: $mimetype");
+            throw new InvalidArgumentException("Invalid mimetype: $mimetype", 3352303696);
         }
 
         $image = $this->generate();

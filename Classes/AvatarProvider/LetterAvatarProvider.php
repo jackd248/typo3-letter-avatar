@@ -23,7 +23,7 @@ class LetterAvatarProvider implements AvatarProviderInterface
             $mode = ColorMode::tryFrom($mode);
         }
         if ($mode === null) {
-            throw new \InvalidArgumentException('Invalid color mode');
+            throw new \InvalidArgumentException('Invalid color mode', 1204028706);
         }
 
         $avatarService = ImageDriverUtility::resolveAvatarService(

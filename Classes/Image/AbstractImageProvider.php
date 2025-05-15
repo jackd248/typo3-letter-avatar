@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3LetterAvatar\Image;
 
-
 use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
 use KonradMichalik\Typo3LetterAvatar\Utility\ColorUtility;
 
@@ -24,11 +23,11 @@ abstract class AbstractImageProvider
         protected string $backgroundColor = '',
         protected ColorMode $mode = ColorMode::CUSTOM,
         protected string $theme = '',
-    )
-    {
+    ) {
     }
 
-    public function configToHash(): string {
+    public function configToHash(): string
+    {
         $parts = [
             $this->name,
             $this->size,
@@ -81,7 +80,6 @@ abstract class AbstractImageProvider
         $secondLetter = isset($nameParts[1]) ? $this->getFirstLetter($nameParts[1]) : '';
 
         return $this->getFirstLetter($nameParts[0]) . $secondLetter;
-
     }
 
     protected function getFirstLetter(string $word): string
@@ -91,7 +89,7 @@ abstract class AbstractImageProvider
 
     protected function breakName(string $name): array
     {
-        return array_values(array_filter(explode(' ', $name), fn($word) => $word !== '' && $word !== ','));
+        return array_values(array_filter(explode(' ', $name), fn ($word) => $word !== '' && $word !== ','));
     }
 
     protected function stringToColor(string $string): string
