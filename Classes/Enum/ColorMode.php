@@ -7,4 +7,5 @@ namespace KonradMichalik\Typo3LetterAvatar\Enum;
 enum ColorMode: string {
     case STRINGIFY = 'stringify';
     case RANDOM = 'random';
+    case THEME = 'theme';
 }

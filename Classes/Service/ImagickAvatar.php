@@ -12,22 +12,18 @@ class ImagickAvatar extends AbstractImageProvider implements LetterAvatarInterfa
 {
     public function generate(): \Imagick
     {
-        $isCircle = $this->shape === 'circle';
-
         $this->nameInitials = $this->getInitials($this->name);
         $this->backgroundColor = $this->backgroundColor ?: $this->stringToColor($this->name);
         $this->foregroundColor = $this->foregroundColor ?: '#fafafa';
 
         $canvas = new \Imagick();
-        $canvas->newImage(480, 480, $isCircle ? new \ImagickPixel('transparent') : new \ImagickPixel($this->backgroundColor));
+        $canvas->newImage(480, 480, new \ImagickPixel('transparent'));
         $canvas->setImageFormat('png');
 
-        if ($isCircle) {
-            $circle = new \ImagickDraw();
-            $circle->setFillColor(new \ImagickPixel($this->backgroundColor));
-            $circle->circle(240, 240, 240, 0);
-            $canvas->drawImage($circle);
-        }
+        $circle = new \ImagickDraw();
+        $circle->setFillColor(new \ImagickPixel($this->backgroundColor));
+        $circle->circle(240, 240, 240, 0);
+        $canvas->drawImage($circle);
 
         $text = new \ImagickDraw();
         $text->setFont(GeneralUtility::getFileAbsFileName('EXT:' . Configuration::EXT_KEY . '/Resources/Public/Fonts/arial-bold.ttf'));

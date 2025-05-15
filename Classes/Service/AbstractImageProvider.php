@@ -16,7 +16,6 @@ abstract class AbstractImageProvider
 
     public function __construct(
         protected string $name,
-        protected string $shape = 'circle',
         protected int $size = 48,
         protected string $foregroundColor = '',
         protected string $backgroundColor = ''
@@ -27,7 +26,6 @@ abstract class AbstractImageProvider
     public function configToHash(): string {
         $parts = [
             $this->name,
-            $this->shape,
             $this->size,
             $this->foregroundColor,
             $this->backgroundColor,

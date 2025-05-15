@@ -6,6 +6,7 @@ namespace KonradMichalik\Typo3LetterAvatar\AvatarProvider;
 
 use KonradMichalik\Typo3LetterAvatar\Configuration;
 use KonradMichalik\Typo3LetterAvatar\Service\AbstractImageProvider;
+use KonradMichalik\Typo3LetterAvatar\Utility\ColorUtility;
 use KonradMichalik\Typo3LetterAvatar\Utility\ImageDriverUtility;
 use TYPO3\CMS\Backend\Backend\Avatar\AvatarProviderInterface;
 use TYPO3\CMS\Backend\Backend\Avatar\Image;
@@ -18,8 +19,11 @@ class LetterAvatarProvider implements AvatarProviderInterface
 {
     public function getImage(array $backendUser, $size): ?Image
     {
+        $colors = ColorUtility::getColors();
         $avatarService = ImageDriverUtility::resolveAvatarService(
-            $this->getName($backendUser),
+            name: $this->getName($backendUser),
+            foregroundColor: $colors['foreground'] ?? '',
+            backgroundColor: $colors['background'] ?? '',
         );
         $fileName = $avatarService->configToHash() . '.png';
         $filePath = $this->getImageFolder() . $fileName;
