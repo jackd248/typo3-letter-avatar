@@ -32,6 +32,7 @@
 	},
 	"suggest": {
 		"ext-gd": "Image processing library for avatar generation",
+		"ext-gmagick": "Image processing library for avatar generation",
 		"ext-imagick": "Image processing library for avatar generation"
 	},
 	"autoload": {

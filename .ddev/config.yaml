@@ -11,6 +11,7 @@ database:
   type: mariadb
   version: "10.6"
 webimage_extra_packages: [libxml2-utils]
+#webimage_extra_packages: ["php${DDEV_PHP_VERSION}-gmagick", libxml2-utils]
 use_dns_when_possible: true
 corepack_enable: false
 hooks:

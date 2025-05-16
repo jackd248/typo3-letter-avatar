@@ -1,6 +1,4 @@
-# cat=general/enable/10; type=options[Imagick=imagick,GraphicsMagick=gmagick,GD=gd]; label=Image driver
-imageDriver = imagick
-# cat=general/enable/20; type=options[Stringify=stringify,Random=random,Theme=theme,Pairs=pairs]; label=Color mode
+# cat=general/enable/10; type=options[Stringify=stringify,Random=random,Theme=theme,Pairs=pairs]; label=Color mode
 colorMode = stringify
-# cat=general/enable/30; type=options[Grayscale (light)=grayscale-light,Grayscale (dark)=grayscale-dark,Colorful=colorful,Pastel=pastel]; label=Theme
+# cat=general/enable/20; type=options[Grayscale (light)=grayscale-light,Grayscale (dark)=grayscale-dark,Colorful=colorful,Pastel=pastel]; label=Theme
 theme = colorful
