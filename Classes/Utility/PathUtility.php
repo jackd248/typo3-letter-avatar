@@ -12,6 +12,11 @@ class PathUtility
     public static function getImageFolder(): string
     {
         $folder = Environment::getPublicPath() . ConfigurationUtility::get('imagePath');
+
+        if (!str_ends_with($folder, '/')) {
+            $folder .= '/';
+        }
+
         if (!is_dir($folder)) {
             GeneralUtility::mkdir_deep($folder);
         }
