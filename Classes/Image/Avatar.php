@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3LetterAvatar\Image;
 
-use KonradMichalik\Typo3LetterAvatar\Enum\EnumInterface;
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageDriver;
 use KonradMichalik\Typo3LetterAvatar\Image\Driver\GdAvatar;
 use KonradMichalik\Typo3LetterAvatar\Image\Driver\GmagickAvatar;
 use KonradMichalik\Typo3LetterAvatar\Image\Driver\ImagickAvatar;
-use KonradMichalik\Typo3LetterAvatar\Utility\ConfigurationUtility;
 
 class Avatar
 {
     public static function create(...$args): LetterAvatarInterface
     {
-        $imageDriver = $args['imageDriver'] ?? ConfigurationUtility::get('imageDriver', ImageDriver::class);
+        $imageDriver = $args['imageDriver'] ?? $GLOBALS['TYPO3_CONF_VARS']['GFX']['processor'];
 
         switch ($imageDriver) {
             case ImageDriver::IMAGICK:
