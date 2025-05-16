@@ -62,6 +62,14 @@ KonradMichalik\Typo3LetterAvatar\Utility\ImageDriverUtility::resolveAvatarServic
 )->saveAs('path/to/file.png');
 ```
 
+## Command
+
+Clear all generated avatar images with the following command:
+
+```bash
+vendor/bin/typo3 avatar:clear
+```
+
 ## Development
 
 Use the following ddev command to easily install all supported TYPO3 versions for locale development.
