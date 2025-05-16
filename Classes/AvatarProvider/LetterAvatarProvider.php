@@ -7,8 +7,8 @@ namespace KonradMichalik\Typo3LetterAvatar\AvatarProvider;
 use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
 use KonradMichalik\Typo3LetterAvatar\Enum\Transform;
+use KonradMichalik\Typo3LetterAvatar\Image\Avatar;
 use KonradMichalik\Typo3LetterAvatar\Utility\ConfigurationUtility;
-use KonradMichalik\Typo3LetterAvatar\Utility\ImageDriverUtility;
 use KonradMichalik\Typo3LetterAvatar\Utility\PathUtility;
 use TYPO3\CMS\Backend\Backend\Avatar\AvatarProviderInterface;
 use TYPO3\CMS\Backend\Backend\Avatar\Image;
@@ -24,7 +24,7 @@ class LetterAvatarProvider implements AvatarProviderInterface
         }
 
         $imageFormat = ConfigurationUtility::get('imageFormat', ImageFormat::class);
-        $avatarService = ImageDriverUtility::resolveAvatarService(
+        $avatarService = Avatar::create(
             name: $this->getName($backendUser),
             mode: $mode,
             theme: ($mode === ColorMode::THEME) ? ConfigurationUtility::get('theme') : '',
