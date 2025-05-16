@@ -8,9 +8,59 @@
 
 </div>
 
-ToDo 
+> [!NOTE]
+> Under active development
+
+This extension generates colorful backend user avatars using name initials letter.
 
 ![user-list.jpg](Documentation/Images/user-list.jpg)
+
+## Features
+
+* Works out of the box
+* Highly customizable
+* Supports color themes
+
+## Requirements
+
+* TYPO3 >= 12.4 & PHP 8.1+
+
+## Installation
+
+### Composer
+
+[![Packagist](https://img.shields.io/packagist/v/konradmichalik/typo3-letter-avatar?label=version&logo=packagist)](https://packagist.org/packages/xima/xima-typo3-content-planner)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/konradmichalik/typo3-letter-avatar?color=brightgreen)](https://packagist.org/packages/xima/xima-typo3-content-planner)
+
+``` bash
+composer require konradmichalik/typo3-letter-avatar
+```
+
+### TER
+
+[![TER version](https://typo3-badges.dev/badge/typo3_letter_avatar/version/shields.svg)](https://extensions.typo3.org/extension/xima_typo3_content_planner)
+[![TER downloads](https://typo3-badges.dev/badge/typo3_letter_avatar/downloads/shields.svg)](https://extensions.typo3.org/extension/xima_typo3_content_planner)
+
+Download the zip file from [TYPO3 extension repository (TER)](https://extensions.typo3.org/extension/typo3_letter_avatar).
+
+## Setup
+
+Setup the extension after the installation:
+
+``` bash
+vendor/bin/typo3 extension:setup --extension=typo3_letter_avatar
+```
+
+## Usage
+
+The extension works for backend users out of the box. If you want to use it for other users, you can use the following code snippet:
+
+```php
+KonradMichalik\Typo3LetterAvatar\Utility\ImageDriverUtility::resolveAvatarService(
+    name: 'Konrad Michalik',
+    mode: KonradMichalik\Typo3LetterAvatar\Enum\ColorMode::RANDOM
+)->saveAs('path/to/file.png');
+```
 
 ## Development
 
