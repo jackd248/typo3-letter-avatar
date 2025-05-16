@@ -7,6 +7,7 @@ namespace KonradMichalik\Typo3LetterAvatar\Image;
 use KonradMichalik\Typo3LetterAvatar\Configuration;
 use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
+use KonradMichalik\Typo3LetterAvatar\Enum\Transform;
 use KonradMichalik\Typo3LetterAvatar\Utility\ColorUtility;
 
 abstract class AbstractImageProvider
@@ -22,6 +23,7 @@ abstract class AbstractImageProvider
         protected ColorMode $mode = ColorMode::CUSTOM,
         protected string $theme = '',
         protected ImageFormat $imageFormat = ImageFormat::PNG,
+        protected Transform $transform = Transform::NONE,
     ) {
     }
 
@@ -37,6 +39,7 @@ abstract class AbstractImageProvider
             $this->backgroundColor,
             $this->mode->value,
             $this->theme,
+            $this->transform->value,
         ];
         return md5(implode('_', $parts));
     }
@@ -78,7 +81,7 @@ abstract class AbstractImageProvider
     protected function resolveInitials(): string
     {
         if ($this->initials !== '') {
-            return $this->initials;
+            return $this->transform($this->initials);
         }
         $nameParts = $this->breakName($this->name);
 
@@ -88,7 +91,19 @@ abstract class AbstractImageProvider
 
         $secondLetter = isset($nameParts[1]) ? $this->getFirstLetter($nameParts[1]) : '';
 
-        return $this->getFirstLetter($nameParts[0]) . $secondLetter;
+        return $this->transform($this->getFirstLetter($nameParts[0]) . $secondLetter);
+    }
+
+    protected function transform(string $string): string
+    {
+        switch ($this->transform) {
+            case Transform::NONE:
+                return $string;
+            case Transform::UPPERCASE:
+                return mb_strtoupper($string);
+            case Transform::LOWERCASE:
+                return mb_strtolower($string);
+        }
     }
 
     protected function getFirstLetter(string $word): string

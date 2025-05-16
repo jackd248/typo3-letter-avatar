@@ -6,6 +6,7 @@ namespace KonradMichalik\Typo3LetterAvatar\AvatarProvider;
 
 use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
+use KonradMichalik\Typo3LetterAvatar\Enum\Transform;
 use KonradMichalik\Typo3LetterAvatar\Utility\ConfigurationUtility;
 use KonradMichalik\Typo3LetterAvatar\Utility\ImageDriverUtility;
 use TYPO3\CMS\Backend\Backend\Avatar\AvatarProviderInterface;
@@ -32,6 +33,7 @@ class LetterAvatarProvider implements AvatarProviderInterface
             fontSize: ConfigurationUtility::get('fontSize'),
             fontPath: ConfigurationUtility::get('fontPath'),
             imageFormat: ConfigurationUtility::get('imageFormat', ImageFormat::class),
+            transform: ConfigurationUtility::get('transform', Transform::class),
         );
 
         $fileName = $avatarService->configToHash() . '.' . $imageFormat->value;

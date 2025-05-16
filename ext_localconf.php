@@ -22,15 +22,15 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
     'fontPath' => 'EXT:typo3_letter_avatar/Resources/Public/Fonts/arial-bold.ttf',
 
     // convert initial letter in uppercase, lowercase or keep as is
-    'transform' => false,
+    'transform' => \KonradMichalik\Typo3LetterAvatar\Enum\Transform::NONE,
 
-    // prioritize real name or username
+    // prioritize real name or username for initial letters
     'prioritizeRealName' => true,
 
     // default image path
     'imagePath' => '/typo3temp/assets/avatars/',
 
-    // image format
+    // image format, png or jpeg
     'imageFormat' => \KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat::PNG,
 
     // color mode
@@ -123,7 +123,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
                 '#FF5722',
             ],
             'foregrounds' => [
-                '#FFFFFF'
+                '#FFFFFF',
             ],
         ],
         'pastel' => [
