@@ -36,39 +36,65 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
     // color mode
     // 'colorMode' => \KonradMichalik\Typo3LetterAvatar\Enum\ColorMode::STRINGIFY->value,
 
-    // List of foreground colors to be used, randomly selected based on name supplied
-    'foregrounds' => [
-        '#FFFFFF',
+    'random' => [
+        // List of foreground colors to be used, randomly selected based on name supplied
+        'foregrounds' => [
+            '#FFFFFF',
+        ],
+
+        // List of background colors to be used, randomly selected based on name supplied
+        'backgrounds' => [
+            '#f44336',
+            '#E91E63',
+            '#9C27B0',
+            '#673AB7',
+            '#3F51B5',
+            '#2196F3',
+            '#03A9F4',
+            '#00BCD4',
+            '#009688',
+            '#4CAF50',
+            '#8BC34A',
+            '#CDDC39',
+            '#FFC107',
+            '#FF9800',
+            '#FF5722',
+        ],
     ],
 
-    // List of background colors to be used, randomly selected based on name supplied
-    'backgrounds' => [
-        '#f44336',
-        '#E91E63',
-        '#9C27B0',
-        '#673AB7',
-        '#3F51B5',
-        '#2196F3',
-        '#03A9F4',
-        '#00BCD4',
-        '#009688',
-        '#4CAF50',
-        '#8BC34A',
-        '#CDDC39',
-        '#FFC107',
-        '#FF9800',
-        '#FF5722',
+    // Color pair combinations
+    'pairs' => [
+        [
+            'background' => '#626F47',
+            'foreground' => '#F0BB78',
+        ],
+        [
+            'background' => '#FE5D26',
+            'foreground' => '#C1DBB3',
+        ],
+        [
+            'background' => '#533B4D',
+            'foreground' => '#FAE3C6',
+        ],
+        [
+            'background' => '#5409DA',
+            'foreground' => '#8DD8FF',
+        ],
+        [
+            'background' => '#096B68',
+            'foreground' => '#FFFBDE',
+        ],
+        [
+            'background' => '#2A4759',
+            'foreground' => '#F79B72',
+        ],
+        [
+            'background' => '#213448',
+            'foreground' => '#ECEFCA',
+        ],
     ],
-
-    // List of theme name to be used when rendering avatar
-    // Possible values are:
-    // 1. Theme name as string: 'colorful'
-    // 2. Or array of string name: ['grayscale-light', 'grayscale-dark']
-    // 3. Or wildcard "*" to use all defined themes
-    // 'theme' => ['colorful'],
 
     // Predefined themes
-    // Available theme attributes are:
     'themes' => [
         'grayscale-light' => [
             'backgrounds' => ['#edf2f7', '#e2e8f0', '#cbd5e0'],
@@ -96,7 +122,9 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
                 '#FF9800',
                 '#FF5722',
             ],
-            'foregrounds' => ['#FFFFFF'],
+            'foregrounds' => [
+                '#FFFFFF'
+            ],
         ],
         'pastel' => [
             'backgrounds' => [
@@ -116,7 +144,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
                 '#D7CCC8',
             ],
             'foregrounds' => [
-                '#FFF',
+                '#FFFFFF',
             ],
         ],
     ],

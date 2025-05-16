@@ -53,6 +53,8 @@ abstract class AbstractImageProvider
                 return ColorUtility::getRandomColors()['foreground'];
             case ColorMode::THEME:
                 return ColorUtility::getRandomThemeColors()['foreground'];
+            case ColorMode::PAIRS:
+                return ColorUtility::getPairColors()['foreground'];
         }
     }
 
@@ -68,6 +70,8 @@ abstract class AbstractImageProvider
                 return ColorUtility::getRandomColors()['background'];
             case ColorMode::THEME:
                 return ColorUtility::getRandomThemeColors()['background'];
+            case ColorMode::PAIRS:
+                return ColorUtility::getPairColors()['background'];
         }
     }
 

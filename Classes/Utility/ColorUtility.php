@@ -5,36 +5,18 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3LetterAvatar\Utility;
 
 use KonradMichalik\Typo3LetterAvatar\Configuration;
-use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
-use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ColorUtility
 {
-    public static function getColors(ColorMode|string $colorMode = null): array
+    public static function getPairColors(): array
     {
-        $colorMode = $colorMode ?: GeneralUtility::makeInstance(ExtensionConfiguration::class)->get(Configuration::EXT_KEY)['general']['colorMode'];
-        if (is_string($colorMode)) {
-            $colorMode = ColorMode::from($colorMode);
-        }
-
-        switch ($colorMode) {
-            case ColorMode::RANDOM:
-                return self::getRandomColors();
-            case ColorMode::THEME:
-                return self::getRandomThemeColors();
-            default:
-                return [
-                    'foreground' => '',
-                    'background' => '',
-                ];
-        }
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']['pairs'][array_rand($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']['pairs'])];
     }
 
     public static function getRandomColors(): array
     {
-        $foregroundColors = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']['foregrounds'];
-        $backgroundColors = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']['backgrounds'];
+        $foregroundColors = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']['random']['foregrounds'];
+        $backgroundColors = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']['random']['backgrounds'];
 
         return [
             'foreground' => $foregroundColors[array_rand($foregroundColors)],
