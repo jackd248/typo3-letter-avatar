@@ -45,7 +45,7 @@ Download the zip file from [TYPO3 extension repository (TER)](https://extensions
 
 ## Setup
 
-Setup the extension after the installation:
+Set up the extension after the installation:
 
 ``` bash
 vendor/bin/typo3 extension:setup --extension=typo3_letter_avatar
@@ -53,10 +53,12 @@ vendor/bin/typo3 extension:setup --extension=typo3_letter_avatar
 
 ## Usage
 
-The extension works for backend users out of the box. If you want to use it for other users, you can use the following code snippet:
+The extension works for backend users out of the box. 
+
+If you want to use it for other use cases, you can use the following code snippet:
 
 ```php
-KonradMichalik\Typo3LetterAvatar\Utility\ImageDriverUtility::resolveAvatarService(
+\KonradMichalik\Typo3LetterAvatar\Image\Avatar::create(
     name: 'Konrad Michalik',
     mode: KonradMichalik\Typo3LetterAvatar\Enum\ColorMode::RANDOM
 )->saveAs('path/to/file.png');
