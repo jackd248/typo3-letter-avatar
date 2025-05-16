@@ -15,7 +15,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
     // image size, in pixel
     'size' => 50,
 
-    // font size
+    // font size, in percentage
     'fontSize' => 0.5,
 
     // font path
@@ -33,6 +33,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
     // image format
     'imageFormat' => \KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat::PNG,
 
+    // color mode
     // 'colorMode' => \KonradMichalik\Typo3LetterAvatar\Enum\ColorMode::STRINGIFY->value,
 
     // List of foreground colors to be used, randomly selected based on name supplied

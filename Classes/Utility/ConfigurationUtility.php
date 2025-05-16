@@ -14,7 +14,7 @@ class ConfigurationUtility
     public static function get(string $key, ?string $expectedEnumClass = null): array|string|int|float|bool|EnumInterface|null
     {
         $configuration = array_merge(
-            GeneralUtility::makeInstance(ExtensionConfiguration::class)->get(Configuration::EXT_KEY)['general'],
+            GeneralUtility::makeInstance(ExtensionConfiguration::class)->get(Configuration::EXT_KEY),
             $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] ?? [],
         );
 
