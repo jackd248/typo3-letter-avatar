@@ -4,13 +4,13 @@
 
 # TYPO3 extension `typo3_letter_avatar`
 
-[![Latest Stable Version](https://typo3-badges.dev/badge/typo3_letter_avatar/version/shields.svg)](https://extensions.typo3.org/extension/typo3_letter_avatar)
-[![Supported TYPO3 versions](https://typo3-badges.dev/badge/typo3_letter_avatar/typo3/shields.svg)](https://extensions.typo3.org/extension/typo3_letter_avatar)
 [![License](https://poser.pugx.org/konradmichalik/typo3-letter-avatar/license)](LICENSE.md)
 
 </div>
 
 ToDo 
+
+![user-list.jpg](Documentation/Images/user-list.jpg)
 
 ## Development
 

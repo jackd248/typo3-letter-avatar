@@ -8,4 +8,6 @@ enum ImageDriver: string
 {
     case IMAGICK = 'imagick';
     case GMAGICK = 'gmagick';
+
+    case GD = 'gd';
 }

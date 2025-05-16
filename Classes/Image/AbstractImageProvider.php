@@ -4,25 +4,24 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3LetterAvatar\Image;
 
+use KonradMichalik\Typo3LetterAvatar\Configuration;
 use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
+use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
 use KonradMichalik\Typo3LetterAvatar\Utility\ColorUtility;
 
 abstract class AbstractImageProvider
 {
-    public const MIME_TYPE_PNG = 'png';
-    public const MIME_TYPE_JPEG = 'jpeg';
-    public const MIME_TYPES = [
-        self::MIME_TYPE_PNG,
-        self::MIME_TYPE_JPEG,
-    ];
-
     public function __construct(
-        protected string $name,
-        protected int $size = 48,
+        protected string $name = '',
+        protected string $initials = '',
+        protected int $size = 100,
+        protected float|int $fontSize = 0.5,
+        protected string $fontPath = 'EXT:' . Configuration::EXT_KEY . '/Resources/Public/Fonts/arial-bold.ttf',
         protected string $foregroundColor = '',
         protected string $backgroundColor = '',
         protected ColorMode $mode = ColorMode::CUSTOM,
         protected string $theme = '',
+        protected ImageFormat $imageFormat = ImageFormat::PNG,
     ) {
     }
 
@@ -30,7 +29,10 @@ abstract class AbstractImageProvider
     {
         $parts = [
             $this->name,
+            $this->initials,
             $this->size,
+            $this->fontSize,
+            $this->fontPath,
             $this->foregroundColor,
             $this->backgroundColor,
             $this->mode->value,
@@ -69,9 +71,12 @@ abstract class AbstractImageProvider
         }
     }
 
-    protected function getInitials(string $name): string
+    protected function resolveInitials(): string
     {
-        $nameParts = $this->breakName($name);
+        if ($this->initials !== '') {
+            return $this->initials;
+        }
+        $nameParts = $this->breakName($this->name);
 
         if (!$nameParts) {
             return '';

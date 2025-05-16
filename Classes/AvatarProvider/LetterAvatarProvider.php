@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3LetterAvatar\AvatarProvider;
 
 use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
-use KonradMichalik\Typo3LetterAvatar\Image\AbstractImageProvider;
+use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
 use KonradMichalik\Typo3LetterAvatar\Utility\ConfigurationUtility;
 use KonradMichalik\Typo3LetterAvatar\Utility\ImageDriverUtility;
 use TYPO3\CMS\Backend\Backend\Avatar\AvatarProviderInterface;
@@ -18,38 +18,40 @@ class LetterAvatarProvider implements AvatarProviderInterface
 {
     public function getImage(array $backendUser, $size): ?Image
     {
-        $mode = ConfigurationUtility::getConfiguration('colorMode');
-        if (!$mode instanceof ColorMode) {
-            $mode = ColorMode::tryFrom($mode);
-        }
+        $mode = ConfigurationUtility::get('colorMode', ColorMode::class);
         if ($mode === null) {
             throw new \InvalidArgumentException('Invalid color mode', 1204028706);
         }
 
+        $imageFormat = ConfigurationUtility::get('imageFormat', ImageFormat::class);
         $avatarService = ImageDriverUtility::resolveAvatarService(
             name: $this->getName($backendUser),
             mode: $mode,
-            theme: ($mode === ColorMode::THEME) ? ConfigurationUtility::getConfiguration('theme') : '',
+            theme: ($mode === ColorMode::THEME) ? ConfigurationUtility::get('theme') : '',
+            size: ConfigurationUtility::get('size'),
+            fontSize: ConfigurationUtility::get('fontSize'),
+            fontPath: ConfigurationUtility::get('fontPath'),
+            imageFormat: ConfigurationUtility::get('imageFormat', ImageFormat::class),
         );
 
-        $fileName = $avatarService->configToHash() . '.png';
+        $fileName = $avatarService->configToHash() . '.' . $imageFormat->value;
         $filePath = $this->getImageFolder() . $fileName;
 
         if (!file_exists($filePath)) {
-            $avatarService->saveAs($filePath, AbstractImageProvider::MIME_TYPE_PNG);
+            $avatarService->saveAs($filePath);
         }
 
         return GeneralUtility::makeInstance(
             Image::class,
             $this->getWebPath($fileName),
-            ConfigurationUtility::getConfiguration('width'),
-            ConfigurationUtility::getConfiguration('height'),
+            ConfigurationUtility::get('size'),
+            ConfigurationUtility::get('size'),
         );
     }
 
     private function getImageFolder(): string
     {
-        $folder = Environment::getPublicPath() . ConfigurationUtility::getConfiguration('avatarPath');
+        $folder = Environment::getPublicPath() . ConfigurationUtility::get('imagePath');
         if (!is_dir($folder)) {
             GeneralUtility::mkdir_deep($folder);
         }
@@ -58,23 +60,13 @@ class LetterAvatarProvider implements AvatarProviderInterface
 
     private function getWebPath(string $filename): string
     {
-        return PathUtility::getAbsoluteWebPath(ConfigurationUtility::getConfiguration('avatarPath') . $filename);
+        return PathUtility::getAbsoluteWebPath(ConfigurationUtility::get('imagePath') . $filename);
     }
 
     private function getName(array $backendUser): string
     {
-        return ConfigurationUtility::getConfiguration('prioritizeRealName') ?
+        return ConfigurationUtility::get('prioritizeRealName') ?
             ($backendUser['realName'] ?: $backendUser['username']) :
             $backendUser['username'];
-    }
-
-    private function getRandomElement(array $array, mixed $default): mixed
-    {
-        if (empty($array)) {
-            return $default;
-        }
-
-        $randomKey = array_rand($array);
-        return $array[$randomKey];
     }
 }

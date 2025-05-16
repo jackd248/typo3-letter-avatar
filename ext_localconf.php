@@ -12,21 +12,26 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['backend']['avatarProviders']['letterAvat
 ];
 
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] = [
-    // Image width, in pixel
-    'width' => 100,
-
-    // Image height, in pixel
-    'height' => 100,
+    // image size, in pixel
+    'size' => 50,
 
     // font size
-    'fontSize' => 48,
+    'fontSize' => 0.5,
 
-    // convert initial letter in uppercase
-    'uppercase' => false,
+    // font path
+    'fontPath' => 'EXT:typo3_letter_avatar/Resources/Public/Fonts/arial-bold.ttf',
 
+    // convert initial letter in uppercase, lowercase or keep as is
+    'transform' => false,
+
+    // prioritize real name or username
     'prioritizeRealName' => true,
 
-    'avatarPath' => '/typo3temp/assets/avatars/',
+    // default image path
+    'imagePath' => '/typo3temp/assets/avatars/',
+
+    // image format
+    'imageFormat' => \KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat::PNG,
 
     // 'colorMode' => \KonradMichalik\Typo3LetterAvatar\Enum\ColorMode::STRINGIFY->value,
 
@@ -63,7 +68,6 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
 
     // Predefined themes
     // Available theme attributes are:
-    // shape, chars, backgrounds, foregrounds, fonts, fontSize, width, height, ascii, uppercase, and border.
     'themes' => [
         'grayscale-light' => [
             'backgrounds' => ['#edf2f7', '#e2e8f0', '#cbd5e0'],

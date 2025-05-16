@@ -60,7 +60,7 @@ class ColorUtility
 
     public static function getThemeColors(): array
     {
-        $themeConfiguration = ConfigurationUtility::getConfiguration('theme');
+        $themeConfiguration = ConfigurationUtility::get('theme');
 
         $themeConfiguration = is_array($themeConfiguration) ? $themeConfiguration : [$themeConfiguration];
         $foregroundColors = [];
