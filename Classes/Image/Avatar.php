@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3LetterAvatar\Image;
 
+use KonradMichalik\Typo3LetterAvatar\Enum\EnumInterface;
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageDriver;
 use KonradMichalik\Typo3LetterAvatar\Image\Driver\GdAvatar;
+use KonradMichalik\Typo3LetterAvatar\Image\Driver\GmagickAvatar;
 use KonradMichalik\Typo3LetterAvatar\Image\Driver\ImagickAvatar;
 use KonradMichalik\Typo3LetterAvatar\Utility\ConfigurationUtility;
-use TYPO3\CMS\Core\Utility\Exception\NotImplementedMethodException;
 
 class Avatar
 {
@@ -23,7 +24,7 @@ class Avatar
             case ImageDriver::GD:
                 return new GdAvatar(...$args);
             case ImageDriver::GMAGICK:
-                throw new NotImplementedMethodException();
+                return new GmagickAvatar(...$args);
         }
     }
 }

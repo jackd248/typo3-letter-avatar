@@ -24,6 +24,10 @@ This extension generates colorful backend user avatars using name initials lette
 ## Requirements
 
 * TYPO3 >= 12.4 & PHP 8.1+
+* one of the following image driver:
+  * ImageMagick
+  * GraphicsMagick
+  * GD
 
 ## Installation
 
