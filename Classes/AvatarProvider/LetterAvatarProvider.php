@@ -9,11 +9,10 @@ use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
 use KonradMichalik\Typo3LetterAvatar\Enum\Transform;
 use KonradMichalik\Typo3LetterAvatar\Utility\ConfigurationUtility;
 use KonradMichalik\Typo3LetterAvatar\Utility\ImageDriverUtility;
+use KonradMichalik\Typo3LetterAvatar\Utility\PathUtility;
 use TYPO3\CMS\Backend\Backend\Avatar\AvatarProviderInterface;
 use TYPO3\CMS\Backend\Backend\Avatar\Image;
-use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\PathUtility;
 
 class LetterAvatarProvider implements AvatarProviderInterface
 {
@@ -37,7 +36,7 @@ class LetterAvatarProvider implements AvatarProviderInterface
         );
 
         $fileName = $avatarService->configToHash() . '.' . $imageFormat->value;
-        $filePath = $this->getImageFolder() . $fileName;
+        $filePath = PathUtility::getImageFolder() . $fileName;
 
         if (!file_exists($filePath)) {
             $avatarService->saveAs($filePath);
@@ -45,26 +44,11 @@ class LetterAvatarProvider implements AvatarProviderInterface
 
         return GeneralUtility::makeInstance(
             Image::class,
-            $this->getWebPath($fileName),
+            PathUtility::getWebPath($fileName),
             ConfigurationUtility::get('size'),
             ConfigurationUtility::get('size'),
         );
     }
-
-    private function getImageFolder(): string
-    {
-        $folder = Environment::getPublicPath() . ConfigurationUtility::get('imagePath');
-        if (!is_dir($folder)) {
-            GeneralUtility::mkdir_deep($folder);
-        }
-        return $folder;
-    }
-
-    private function getWebPath(string $filename): string
-    {
-        return PathUtility::getAbsoluteWebPath(ConfigurationUtility::get('imagePath') . $filename);
-    }
-
     private function getName(array $backendUser): string
     {
         return ConfigurationUtility::get('prioritizeRealName') ?

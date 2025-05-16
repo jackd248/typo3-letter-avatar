@@ -7,3 +7,9 @@ services:
     KonradMichalik\Typo3LetterAvatar\:
         resource: '../Classes/*'
         exclude: '../Classes/Domain/Model/*'
+
+    KonradMichalik\Typo3LetterAvatar\Command\ClearAvatarsCommand:
+        tags:
+            - name: console.command
+              command: 'avatar:clear'
+              description: 'Clear all generated letter avatars.'
