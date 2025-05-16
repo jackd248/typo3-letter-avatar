@@ -78,6 +78,10 @@ Use the following ddev command to easily install all supported TYPO3 versions fo
 ddev install all
 ```
 
+### Credits
+
+This project is highly inspired by [avatar](https://github.com/laravolt/avatar) and [letter-avatar](https://github.com/yohangdev/letter-avatar).
+
 ## License
 
 This project is licensed
