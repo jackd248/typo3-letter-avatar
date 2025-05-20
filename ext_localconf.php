@@ -11,38 +11,43 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['backend']['avatarProviders']['letterAvat
     'after' => ['defaultAvatarProvider'],
 ];
 
+/*
+* Default configuration
+*/
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] = [
-    // image size, in pixel
+    // Image size, in pixel
     'size' => 50,
 
-    // font size, in percentage
+    // Font size, in percentage
     'fontSize' => 0.5,
 
-    // font path
+    // Font path
     'fontPath' => 'EXT:typo3_letter_avatar/Resources/Public/Fonts/arial-bold.ttf',
 
-    // convert initial letter in uppercase, lowercase or keep as is
+    // Convert initial letter in uppercase, lowercase or keep as is
     'transform' => \KonradMichalik\Typo3LetterAvatar\Enum\Transform::NONE,
 
-    // prioritize real name or username for initial letters
+    // Prioritize real name (or username) of a backend user for initial letters
     'prioritizeRealName' => true,
 
-    // default image path
+    // Default path for processed images
     'imagePath' => '/typo3temp/assets/avatars/',
 
-    // image format, png or jpeg
+    // Image format for processed images, png or jpeg
     'imageFormat' => \KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat::PNG,
 
-    // color mode
+    // Color mode
+    // Attention: this entry will override the 'colorMode' configuration from the extension settings
     // 'colorMode' => \KonradMichalik\Typo3LetterAvatar\Enum\ColorMode::STRINGIFY->value,
 
+    // Color mode: "Random"
     'random' => [
-        // List of foreground colors to be used, randomly selected based on name supplied
+        // List of foreground colors to be used, randomly selected
         'foregrounds' => [
             '#FFFFFF',
         ],
 
-        // List of background colors to be used, randomly selected based on name supplied
+        // List of background colors to be used, randomly selected
         'backgrounds' => [
             '#f44336',
             '#E91E63',
@@ -62,7 +67,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
         ],
     ],
 
-    // Color pair combinations
+    // Color mode: "Pairs"
     'pairs' => [
         [
             'background' => '#626F47',
@@ -94,7 +99,11 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
         ],
     ],
 
-    // Predefined themes
+    // Theme selection
+    // Attention: this entry will override the 'theme' configuration from the extension settings
+    // 'theme' => 'grayscale-light',
+
+    // Color mode: "Theme"
     'themes' => [
         'grayscale-light' => [
             'backgrounds' => ['#edf2f7', '#e2e8f0', '#cbd5e0'],
