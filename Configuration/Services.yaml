@@ -8,6 +8,9 @@ services:
         resource: '../Classes/*'
         exclude: '../Classes/Domain/Model/*'
 
+    KonradMichalik\Typo3LetterAvatar\AvatarProvider\LetterAvatarProvider:
+      public: true
+
     KonradMichalik\Typo3LetterAvatar\Command\ClearAvatarsCommand:
         tags:
             - name: console.command
