@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3LetterAvatar\Image;
 
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageDriver;
-use KonradMichalik\Typo3LetterAvatar\Image\Driver\GdAvatar;
-use KonradMichalik\Typo3LetterAvatar\Image\Driver\GmagickAvatar;
-use KonradMichalik\Typo3LetterAvatar\Image\Driver\ImagickAvatar;
+use KonradMichalik\Typo3LetterAvatar\Image\Driver\Gd;
+use KonradMichalik\Typo3LetterAvatar\Image\Driver\Gmagick;
+use KonradMichalik\Typo3LetterAvatar\Image\Driver\Imagick;
 
 class Avatar
 {
@@ -18,11 +18,11 @@ class Avatar
         switch ($imageDriver) {
             case ImageDriver::IMAGICK:
             default:
-                return new ImagickAvatar(...$args);
+                return new Imagick(...$args);
             case ImageDriver::GD:
-                return new GdAvatar(...$args);
+                return new Gd(...$args);
             case ImageDriver::GMAGICK:
-                return new GmagickAvatar(...$args);
+                return new Gmagick(...$args);
         }
     }
 }
