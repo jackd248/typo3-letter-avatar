@@ -74,7 +74,7 @@ vendor/bin/typo3 avatar:clear
 
 ## EventListener
 
-You can use the `BackendUserModifyAvatarProviderEvent` to modify the avatar configuration according to the current backend user:
+You can use the `BackendUserAvatarConfigurationEvent` to modify the avatar configuration according to the current backend user:
 
 ```php
 <?php
