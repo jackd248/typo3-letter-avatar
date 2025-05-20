@@ -100,7 +100,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
     ],
 
     // Theme selection
-    // Attention: this entry will override the 'colorMode' configuration from the extension settings
+    // Attention: this entry will override the 'theme' configuration from the extension settings
     // 'theme' => 'grayscale-light',
 
     // Color mode: "Theme"
