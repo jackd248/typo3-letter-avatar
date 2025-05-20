@@ -147,5 +147,9 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
                 '#FFFFFF',
             ],
         ],
+        'typo3' => [
+            'backgrounds' => ['#FF8700'],
+            'foregrounds' => ['#000000'],
+        ],
     ],
 ];
