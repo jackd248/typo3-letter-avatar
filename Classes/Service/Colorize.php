@@ -62,12 +62,23 @@ class Colorize
 
     private function getRandomForegroundColor(): string
     {
-        return $this->getRandomConfig('random')['foregrounds'][array_rand($this->getRandomConfig('random')['foregrounds'])];
+        $this->initializeRandomColors();
+        return $this->foregroundColors[array_rand($this->foregroundColors)];
     }
 
     private function getRandomBackgroundColor(): string
     {
-        return $this->getRandomConfig('random')['backgrounds'][array_rand($this->getRandomConfig('random')['backgrounds'])];
+        $this->initializeRandomColors();
+        return $this->backgroundColors[array_rand($this->backgroundColors)];
+    }
+
+    private function initializeRandomColors(): void
+    {
+        if (empty($this->foregroundColors) || empty($this->backgroundColors)) {
+            $randomConfig = $this->getRandomConfig('random');
+            $this->foregroundColors = $randomConfig['foregrounds'];
+            $this->backgroundColors = $randomConfig['backgrounds'];
+        }
     }
 
     private function getRandomThemeFrontendColor(): string
