@@ -8,6 +8,7 @@ use KonradMichalik\Typo3LetterAvatar\Configuration;
 use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
 use KonradMichalik\Typo3LetterAvatar\Image\AbstractImageProvider;
 use KonradMichalik\Typo3LetterAvatar\Utility\ConfigurationUtility;
+use KonradMichalik\Typo3LetterAvatar\Utility\StringUtility;
 
 class Colorize
 {
@@ -32,7 +33,9 @@ class Colorize
     {
         return match ($this->avatar->mode) {
             ColorMode::CUSTOM => $this->avatar->backgroundColor,
-            ColorMode::STRINGIFY => $this->stringToColor($this->avatar->resolveInitials()),
+            ColorMode::STRINGIFY => $this->stringToColor(
+                StringUtility::resolveInitials($this->avatar->name, $this->avatar->initials, $this->avatar->transform)
+            ),
             ColorMode::RANDOM => $this->getRandomBackgroundColor(),
             ColorMode::THEME => $this->getRandomThemeBackendColor(),
             ColorMode::PAIRS => $this->getPairBackgroundColor(),
@@ -54,7 +57,7 @@ class Colorize
     private function initializePairColors(): void
     {
         if (empty($this->foregroundColors) || empty($this->backgroundColors)) {
-            $pairColors = $this->getRandomConfig('pairs');
+            $pairColors = $this->getConfigRandom('pairs');
             $this->foregroundColors = $pairColors['foreground'];
             $this->backgroundColors = $pairColors['background'];
         }
@@ -75,7 +78,7 @@ class Colorize
     private function initializeRandomColors(): void
     {
         if (empty($this->foregroundColors) || empty($this->backgroundColors)) {
-            $randomConfig = $this->getRandomConfig('random');
+            $randomConfig = $this->getRandomConfig();
             $this->foregroundColors = $randomConfig['foregrounds'];
             $this->backgroundColors = $randomConfig['backgrounds'];
         }
@@ -116,7 +119,12 @@ class Colorize
         );
     }
 
-    private function getRandomConfig(string $key): array
+    private function getRandomConfig(): array
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']['random'];
+    }
+
+    private function getConfigRandom(string $key): array
     {
         return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'][$key][array_rand($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'][$key])];
     }
