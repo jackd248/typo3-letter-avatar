@@ -57,7 +57,7 @@ class Colorize
     private function initializePairColors(): void
     {
         if (empty($this->foregroundColors) || empty($this->backgroundColors)) {
-            $pairColors = $this->getRandomConfig('pairs');
+            $pairColors = $this->getConfigRandom('pairs');
             $this->foregroundColors = $pairColors['foreground'];
             $this->backgroundColors = $pairColors['background'];
         }
@@ -78,7 +78,7 @@ class Colorize
     private function initializeRandomColors(): void
     {
         if (empty($this->foregroundColors) || empty($this->backgroundColors)) {
-            $randomConfig = $this->getRandomConfig('random');
+            $randomConfig = $this->getRandomConfig();
             $this->foregroundColors = $randomConfig['foregrounds'];
             $this->backgroundColors = $randomConfig['backgrounds'];
         }
@@ -119,7 +119,12 @@ class Colorize
         );
     }
 
-    private function getRandomConfig(string $key): array
+    private function getRandomConfig(): array
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']['random'];
+    }
+
+    private function getConfigRandom(string $key): array
     {
         return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'][$key][array_rand($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'][$key])];
     }
