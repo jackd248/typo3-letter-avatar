@@ -72,6 +72,45 @@ Clear all generated avatar images with the following command:
 vendor/bin/typo3 avatar:clear
 ```
 
+## EventListener
+
+You can use the `BackendUserModifyAvatarProviderEvent` to modify the avatar configuration according to the current backend user:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace Vendor\Package\EventListener;
+
+use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
+use KonradMichalik\Typo3LetterAvatar\Event\BackendUserAvatarConfigurationEvent;
+
+class ModifyLetterAvatarEventListener
+{
+    public function __invoke(BackendUserAvatarConfigurationEvent $event): void
+    {
+        $backendUser = $event->getBackendUser();
+        
+        /*
+         * Example: If the backend user is an admin, set the CUSTOM color mode and define custom colors.
+         */ 
+        if ($backendUser['admin'] === 1) {
+            $configuration = $event->getConfiguration();
+            $configuration['mode'] = ColorMode::CUSTOM;
+            $configuration['foreground'] = '#000000';
+            $configuration['background'] = '#FFFFFF';
+            
+            $event->setConfiguration($configuration);
+        }
+    }
+}
+```
+
+> [!NOTE]
+> Don't forget to [register the event listener](https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ApiOverview/Events/EventDispatcher/Index.html#registering-the-event-listener-via-file-services-yaml).
+
+
 ## Development
 
 Use the following ddev command to easily install all supported TYPO3 versions for locale development.

@@ -7,15 +7,21 @@ namespace KonradMichalik\Typo3LetterAvatar\AvatarProvider;
 use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
 use KonradMichalik\Typo3LetterAvatar\Enum\Transform;
+use KonradMichalik\Typo3LetterAvatar\Event\BackendUserAvatarConfigurationEvent;
 use KonradMichalik\Typo3LetterAvatar\Image\Avatar;
 use KonradMichalik\Typo3LetterAvatar\Utility\ConfigurationUtility;
 use KonradMichalik\Typo3LetterAvatar\Utility\PathUtility;
 use TYPO3\CMS\Backend\Backend\Avatar\AvatarProviderInterface;
 use TYPO3\CMS\Backend\Backend\Avatar\Image;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class LetterAvatarProvider implements AvatarProviderInterface
 {
+    public function __construct(protected readonly EventDispatcher $eventDispatcher)
+    {
+    }
+
     public function getImage(array $backendUser, $size): ?Image
     {
         $mode = ConfigurationUtility::get('colorMode', ColorMode::class);
@@ -24,16 +30,19 @@ class LetterAvatarProvider implements AvatarProviderInterface
         }
 
         $imageFormat = ConfigurationUtility::get('imageFormat', ImageFormat::class);
-        $avatarService = Avatar::create(
-            name: $this->getName($backendUser),
-            mode: $mode,
-            theme: ($mode === ColorMode::THEME) ? ConfigurationUtility::get('theme') : '',
-            size: ConfigurationUtility::get('size'),
-            fontSize: ConfigurationUtility::get('fontSize'),
-            fontPath: ConfigurationUtility::get('fontPath'),
-            imageFormat: ConfigurationUtility::get('imageFormat', ImageFormat::class),
-            transform: ConfigurationUtility::get('transform', Transform::class),
-        );
+        $configuration = [
+            'name' => $this->getName($backendUser),
+            'mode' => $mode,
+            'theme' => ($mode === ColorMode::THEME) ? ConfigurationUtility::get('theme') : '',
+            'size' => ConfigurationUtility::get('size'),
+            'fontSize' => ConfigurationUtility::get('fontSize'),
+            'fontPath' => ConfigurationUtility::get('fontPath'),
+            'imageFormat' => $imageFormat,
+            'transform' => ConfigurationUtility::get('transform', Transform::class),
+        ];
+
+        $this->eventDispatcher->dispatch(new BackendUserAvatarConfigurationEvent($backendUser, $configuration));
+        $avatarService = Avatar::create(...$configuration);
 
         $fileName = $avatarService->configToHash() . '.' . $imageFormat->value;
         $filePath = PathUtility::getImageFolder() . $fileName;
@@ -51,8 +60,10 @@ class LetterAvatarProvider implements AvatarProviderInterface
     }
     private function getName(array $backendUser): string
     {
-        return ConfigurationUtility::get('prioritizeRealName') ?
-            ($backendUser['realName'] ?: $backendUser['username']) :
-            $backendUser['username'];
+        if (ConfigurationUtility::get('prioritizeRealName')) {
+            return $backendUser['realName'] ?: $backendUser['username'];
+        }
+
+        return $backendUser['username'];
     }
 }
