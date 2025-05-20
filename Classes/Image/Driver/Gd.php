@@ -14,14 +14,15 @@ class Gd extends AbstractImageProvider implements LetterAvatarInterface
     public function generate()
     {
         $initials = $this->resolveInitials();
-        $bgColor = $this->allocateColor($this->colorizeService->resolveBackgroundColor());
-        $fgColor = $this->allocateColor($this->colorizeService->resolveForegroundColor());
-
         $canvas = $this->createCanvas();
 
         if ($canvas === false) {
             return false;
         }
+
+        $bgColor = $this->allocateColor($canvas, $this->colorizeService->resolveBackgroundColor());
+        $fgColor = $this->allocateColor($canvas, $this->colorizeService->resolveForegroundColor());
+
         imagefilledellipse($canvas, $this->size / 2, $this->size / 2, $this->size, $this->size, $bgColor);
 
         $this->drawText($canvas, $initials, $fgColor);
@@ -55,10 +56,10 @@ class Gd extends AbstractImageProvider implements LetterAvatarInterface
         return $canvas;
     }
 
-    private function allocateColor(string $hexColor): int|bool
+    private function allocateColor(\GdImage $canvas, string $hexColor): int|bool
     {
         [$r, $g, $b] = sscanf($hexColor, '#%02x%02x%02x');
-        return imagecolorallocate($this->createCanvas(), $r, $g, $b);
+        return imagecolorallocate($canvas, $r, $g, $b);
     }
 
     private function drawText($canvas, string $text, $color): void
