@@ -6,6 +6,7 @@ namespace KonradMichalik\Typo3LetterAvatar\Utility;
 
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\PathUtility as CorePathUtility;
 
 class PathUtility
 {
@@ -25,6 +26,6 @@ class PathUtility
 
     public static function getWebPath(string $filename): string
     {
-        return \TYPO3\CMS\Core\Utility\PathUtility::getAbsoluteWebPath(ConfigurationUtility::get('imagePath') . $filename);
+        return CorePathUtility::getAbsoluteWebPath(ConfigurationUtility::get('imagePath') . $filename);
     }
 }

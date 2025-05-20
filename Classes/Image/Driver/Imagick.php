@@ -7,6 +7,7 @@ namespace KonradMichalik\Typo3LetterAvatar\Image\Driver;
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
 use KonradMichalik\Typo3LetterAvatar\Image\AbstractImageProvider;
 use KonradMichalik\Typo3LetterAvatar\Image\LetterAvatarInterface;
+use KonradMichalik\Typo3LetterAvatar\Utility\StringUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class Imagick extends AbstractImageProvider implements LetterAvatarInterface
@@ -15,7 +16,11 @@ class Imagick extends AbstractImageProvider implements LetterAvatarInterface
     {
         $canvas = $this->createCanvas();
         $this->drawCircle($canvas, $this->colorizeService->resolveBackgroundColor());
-        $this->drawText($canvas, $this->resolveInitials(), $this->colorizeService->resolveForegroundColor());
+        $this->drawText(
+            $canvas,
+            StringUtility::resolveInitials($this->name, $this->initials, $this->transform),
+            $this->colorizeService->resolveForegroundColor()
+        );
         return $canvas;
     }
 
