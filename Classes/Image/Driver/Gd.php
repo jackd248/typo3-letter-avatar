@@ -7,13 +7,14 @@ namespace KonradMichalik\Typo3LetterAvatar\Image\Driver;
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
 use KonradMichalik\Typo3LetterAvatar\Image\AbstractImageProvider;
 use KonradMichalik\Typo3LetterAvatar\Image\LetterAvatarInterface;
+use KonradMichalik\Typo3LetterAvatar\Utility\StringUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class Gd extends AbstractImageProvider implements LetterAvatarInterface
 {
     public function generate()
     {
-        $initials = $this->resolveInitials();
+        $initials = StringUtility::resolveInitials($this->name, $this->initials, $this->transform);
         $canvas = $this->createCanvas();
 
         if ($canvas === false) {
