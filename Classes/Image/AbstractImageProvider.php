@@ -8,23 +8,26 @@ use KonradMichalik\Typo3LetterAvatar\Configuration;
 use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
 use KonradMichalik\Typo3LetterAvatar\Enum\Transform;
-use KonradMichalik\Typo3LetterAvatar\Utility\ColorUtility;
+use KonradMichalik\Typo3LetterAvatar\Service\Colorize;
 
 abstract class AbstractImageProvider
 {
+    protected ?Colorize $colorizeService = null;
+
     public function __construct(
-        protected string $name = '',
-        protected string $initials = '',
-        protected int $size = 100,
-        protected float|int $fontSize = 0.5,
-        protected string $fontPath = 'EXT:' . Configuration::EXT_KEY . '/Resources/Public/Fonts/arial-bold.ttf',
-        protected string $foregroundColor = '',
-        protected string $backgroundColor = '',
-        protected ColorMode $mode = ColorMode::CUSTOM,
-        protected string $theme = '',
-        protected ImageFormat $imageFormat = ImageFormat::PNG,
-        protected Transform $transform = Transform::NONE,
+        public string $name = '',
+        public string $initials = '',
+        public int $size = 100,
+        public float|int $fontSize = 0.5,
+        public string $fontPath = 'EXT:' . Configuration::EXT_KEY . '/Resources/Public/Fonts/arial-bold.ttf',
+        public string $foregroundColor = '',
+        public string $backgroundColor = '',
+        public ColorMode $mode = ColorMode::CUSTOM,
+        public string $theme = '',
+        public ImageFormat $imageFormat = ImageFormat::PNG,
+        public Transform $transform = Transform::NONE,
     ) {
+        $this->colorizeService = new Colorize($this);
     }
 
     public function configToHash(): string
@@ -44,41 +47,7 @@ abstract class AbstractImageProvider
         return md5(implode('_', $parts));
     }
 
-    protected function resolveForegroundColor(): string
-    {
-        switch ($this->mode) {
-            case ColorMode::CUSTOM:
-            default:
-                return $this->foregroundColor;
-            case ColorMode::STRINGIFY:
-                return ColorUtility::getRandomColors()['foreground'];
-            case ColorMode::RANDOM:
-                return ColorUtility::getRandomColors()['foreground'];
-            case ColorMode::THEME:
-                return ColorUtility::getRandomThemeColors()['foreground'];
-            case ColorMode::PAIRS:
-                return ColorUtility::getPairColors()['foreground'];
-        }
-    }
-
-    protected function resolveBackgroundColor(): string
-    {
-        switch ($this->mode) {
-            case ColorMode::CUSTOM:
-            default:
-                return $this->backgroundColor;
-            case ColorMode::STRINGIFY:
-                return $this->stringToColor($this->name);
-            case ColorMode::RANDOM:
-                return ColorUtility::getRandomColors()['background'];
-            case ColorMode::THEME:
-                return ColorUtility::getRandomThemeColors()['background'];
-            case ColorMode::PAIRS:
-                return ColorUtility::getPairColors()['background'];
-        }
-    }
-
-    protected function resolveInitials(): string
+    public function resolveInitials(): string
     {
         if ($this->initials !== '') {
             return $this->transform($this->initials);
@@ -96,14 +65,11 @@ abstract class AbstractImageProvider
 
     protected function transform(string $string): string
     {
-        switch ($this->transform) {
-            case Transform::NONE:
-                return $string;
-            case Transform::UPPERCASE:
-                return mb_strtoupper($string);
-            case Transform::LOWERCASE:
-                return mb_strtolower($string);
-        }
+        return match ($this->transform) {
+            Transform::UPPERCASE => mb_strtoupper($string),
+            Transform::LOWERCASE => mb_strtolower($string),
+            default => $string,
+        };
     }
 
     protected function getFirstLetter(string $word): string
@@ -114,17 +80,5 @@ abstract class AbstractImageProvider
     protected function breakName(string $name): array
     {
         return array_values(array_filter(explode(' ', $name), fn ($word) => $word !== '' && $word !== ','));
-    }
-
-    protected function stringToColor(string $string): string
-    {
-        $rgb = substr(hash('crc32b', $string), 0, 6);
-        $darker = 2;
-
-        $R = sprintf('%02X', hexdec(substr($rgb, 0, 2)) / $darker);
-        $G = sprintf('%02X', hexdec(substr($rgb, 2, 2)) / $darker);
-        $B = sprintf('%02X', hexdec(substr($rgb, 4, 2)) / $darker);
-
-        return "#$R$G$B";
     }
 }

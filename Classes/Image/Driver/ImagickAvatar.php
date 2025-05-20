@@ -14,8 +14,8 @@ class ImagickAvatar extends AbstractImageProvider implements LetterAvatarInterfa
     public function generate(): \Imagick
     {
         $nameInitials = $this->resolveInitials();
-        $backgroundColor = $this->resolveBackgroundColor();
-        $foregroundColor = $this->resolveForegroundColor();
+        $backgroundColor = $this->colorizeService->resolveBackgroundColor();
+        $foregroundColor = $this->colorizeService->resolveForegroundColor();
 
         $canvas = new \Imagick();
 

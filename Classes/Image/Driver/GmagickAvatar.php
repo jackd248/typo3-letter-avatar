@@ -14,8 +14,8 @@ class GmagickAvatar extends AbstractImageProvider implements LetterAvatarInterfa
     public function generate(): \Gmagick
     {
         $nameInitials = $this->resolveInitials();
-        $backgroundColor = $this->resolveBackgroundColor();
-        $foregroundColor = $this->resolveForegroundColor();
+        $backgroundColor = $this->colorizeService->resolveBackgroundColor();
+        $foregroundColor = $this->colorizeService->resolveForegroundColor();
 
         $canvas = new \Gmagick();
         $canvas->newimage($this->size, $this->size, 'transparent');

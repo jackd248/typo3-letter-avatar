@@ -14,8 +14,8 @@ class GdAvatar extends AbstractImageProvider implements LetterAvatarInterface
     public function generate()
     {
         $nameInitials = $this->resolveInitials();
-        $backgroundColor = $this->resolveBackgroundColor();
-        $foregroundColor = $this->resolveForegroundColor();
+        $backgroundColor = $this->colorizeService->resolveBackgroundColor();
+        $foregroundColor = $this->colorizeService->resolveForegroundColor();
 
         $canvas = imagecreatetruecolor($this->size, $this->size);
         imagesavealpha($canvas, true);
