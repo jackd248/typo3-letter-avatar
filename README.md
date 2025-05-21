@@ -19,7 +19,8 @@ This extension generates colorful backend user avatars using name initial letter
 
 * Generates out-of-the-box colorful avatars for backend users
 * Easily customizable and flexible configuration
-* Supports different predefined color modes and themes
+* Provides different predefined color modes and themes
+* Supports frontend user avatars with an additional viewhelper
 
 ## Requirements
 
@@ -115,7 +116,20 @@ If you want to use it for other use cases, you can use the following code snippe
 ```
 
 > [!NOTE]
-> See available parameters in the [AbstractImageProvider.php](Classes/Image/AbstractImageProvider.php#17)
+> See available parameters in the [AbstractImageProvider](Classes/Image/AbstractImageProvider.php#17)
+
+### ViewHelper
+
+You can use the `KonradMichalik\Typo3LetterAvatar\ViewHelpers\AvatarViewHelper` to generate an letter avatar image path in your Fluid templates, e.g. for frontend users:
+
+```html
+<html xmlns:letter="http://typo3.org/ns/KonradMichalik/Typo3LetterAvatar/ViewHelpers">
+
+<img src="{letter:avatar(name: 'John Doe')}" alt="Avatar of John Doe" />
+```
+
+> [!NOTE]
+> See available arguments in the [AvatarViewHelper](Classes/ViewHelpers/AvatarViewHelper.php).
 
 ### Console Command
 
@@ -177,5 +191,4 @@ This project is highly inspired by [avatar](https://github.com/laravolt/avatar) 
 
 ## License
 
-This project is licensed
-under [GNU General Public License 2.0 (or later)](LICENSE.md).
+This project is licensed under [GNU General Public License 2.0 (or later)](LICENSE.md).

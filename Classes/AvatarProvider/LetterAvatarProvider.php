@@ -29,7 +29,6 @@ class LetterAvatarProvider implements AvatarProviderInterface
             throw new \InvalidArgumentException('Invalid color mode', 1204028706);
         }
 
-        $imageFormat = ConfigurationUtility::get('imageFormat', ImageFormat::class);
         $configuration = [
             'name' => $this->getName($backendUser),
             'mode' => $mode,
@@ -37,14 +36,14 @@ class LetterAvatarProvider implements AvatarProviderInterface
             'size' => ConfigurationUtility::get('size'),
             'fontSize' => ConfigurationUtility::get('fontSize'),
             'fontPath' => ConfigurationUtility::get('fontPath'),
-            'imageFormat' => $imageFormat,
+            'imageFormat' => ConfigurationUtility::get('imageFormat', ImageFormat::class),
             'transform' => ConfigurationUtility::get('transform', Transform::class),
         ];
 
         $this->eventDispatcher->dispatch(new BackendUserAvatarConfigurationEvent($backendUser, $configuration));
         $avatarService = Avatar::create(...$configuration);
 
-        $fileName = $avatarService->configToHash() . '.' . $imageFormat->value;
+        $fileName = $avatarService->configToHash() . '.' . $configuration['imageFormat']->value;
         $filePath = PathUtility::getImageFolder() . $fileName;
 
         if (!file_exists($filePath)) {
