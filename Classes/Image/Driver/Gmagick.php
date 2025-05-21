@@ -7,6 +7,7 @@ namespace KonradMichalik\Typo3LetterAvatar\Image\Driver;
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
 use KonradMichalik\Typo3LetterAvatar\Image\AbstractImageProvider;
 use KonradMichalik\Typo3LetterAvatar\Image\LetterAvatarInterface;
+use KonradMichalik\Typo3LetterAvatar\Utility\PathUtility;
 use KonradMichalik\Typo3LetterAvatar\Utility\StringUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -24,10 +25,11 @@ class Gmagick extends AbstractImageProvider implements LetterAvatarInterface
         return $canvas;
     }
 
-    public function saveAs(string $path, ImageFormat $format = ImageFormat::PNG, int $quality = 90): bool
+    public function save(?string $path = null, ImageFormat $format = ImageFormat::PNG, int $quality = 90): string
     {
-        if (empty($path)) {
-            return false;
+        if (is_null($path)) {
+            $filename = $this->configToHash() . '.' . $format->value;
+            $path = PathUtility::getImageFolder() . $filename;
         }
 
         $image = $this->generate();
@@ -38,7 +40,7 @@ class Gmagick extends AbstractImageProvider implements LetterAvatarInterface
         }
 
         $image->write($path);
-        return true;
+        return $path;
     }
 
     private function createCanvas(): \Gmagick

@@ -10,7 +10,8 @@ interface LetterAvatarInterface
 {
     public function generate();
 
-    public function saveAs(string $path, ImageFormat $format = ImageFormat::PNG, int $quality = 90): bool;
+    public function save(?string $path = null, ImageFormat $format = ImageFormat::PNG, int $quality = 90): string;
 
-    public function configToHash(): string;
+    public function getImagePath(?string $filename = null): string;
+    public function getWebPath(?string $filename = null): string;
 }

@@ -109,10 +109,15 @@ The extension works for backend users out of the box.
 If you want to use it for other use cases, you can use the following code snippet to generate an avatar image:
 
 ```php
-\KonradMichalik\Typo3LetterAvatar\Image\Avatar::create(
+// Generate avatar entity
+$avatar = \KonradMichalik\Typo3LetterAvatar\Image\Avatar::create(
     name: 'Konrad Michalik',
     mode: KonradMichalik\Typo3LetterAvatar\Enum\ColorMode::RANDOM
-)->saveAs('path/to/file.png');
+);
+// Save avatar image to default path
+$avatar->save();
+// Get web path of generated image
+$avatar->getWebPath();
 ```
 
 > [!NOTE]
