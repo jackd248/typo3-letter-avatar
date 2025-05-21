@@ -9,7 +9,6 @@ use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
 use KonradMichalik\Typo3LetterAvatar\Enum\Transform;
 use KonradMichalik\Typo3LetterAvatar\Image\Avatar;
 use KonradMichalik\Typo3LetterAvatar\Utility\ConfigurationUtility;
-use KonradMichalik\Typo3LetterAvatar\Utility\PathUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
@@ -117,13 +116,10 @@ class AvatarViewHelper extends AbstractViewHelper
 
         $avatarService = Avatar::create(...$configuration);
 
-        $fileName = $avatarService->configToHash() . '.' . $configuration['imageFormat']->value;
-        $filePath = PathUtility::getImageFolder() . $fileName;
-
-        if (!file_exists($filePath)) {
-            $avatarService->saveAs($filePath);
+        if (!file_exists($avatarService->getImagePath())) {
+            $avatarService->save();
         }
 
-        return PathUtility::getWebPath($fileName);
+        return $avatarService->getWebPath();
     }
 }

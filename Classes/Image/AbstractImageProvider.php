@@ -9,6 +9,7 @@ use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
 use KonradMichalik\Typo3LetterAvatar\Enum\Transform;
 use KonradMichalik\Typo3LetterAvatar\Service\Colorize;
+use KonradMichalik\Typo3LetterAvatar\Utility\PathUtility;
 
 abstract class AbstractImageProvider
 {
@@ -30,7 +31,17 @@ abstract class AbstractImageProvider
         $this->colorizeService = new Colorize($this);
     }
 
-    public function configToHash(): string
+    public function getImagePath(?string $filename = null): string
+    {
+        return PathUtility::getImageFolder() . ($filename ?: ($this->configToHash() . '.' . $this->imageFormat->value));
+    }
+
+    public function getWebPath(?string $filename = null): string
+    {
+        return PathUtility::getWebPath($filename ?: $this->configToHash() . '.' . $this->imageFormat->value);
+    }
+
+    protected function configToHash(): string
     {
         $parts = [
             $this->name,
