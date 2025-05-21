@@ -69,10 +69,11 @@ Use the extension configuration under `Admin Tools > Settings > Extension Config
   * `PAIRS`: Randomly selected color pairs. See available [color pairs](ext_localconf.php#L71).
   * `CUSTOM`: Custom colors defined in the configuration. Only available via the custom configuration.
 * **Theme**: Only for color mode "Theme". Select the color theme (collection of foreground and background colors) for the avatar generation. See available [themes](ext_localconf.php#L107).
+* **Font**: Select the desired font for the letter avatar generation. Choose between several various font (types).
 
 ### Custom
 
-The [default configuration](ext_localconf.php#L107) can be easily overridden in your own extension. You can use the following code snippet to create a custom configuration:
+The [default configuration](ext_localconf.php#L17) can be easily overridden in your own extension. You can use the following code snippet to create a custom configuration:
 
 ```php
 <?php
@@ -192,7 +193,9 @@ ddev install all
 
 ## Credits
 
-This project is highly inspired by [avatar](https://github.com/laravolt/avatar) and [letter-avatar](https://github.com/yohangdev/letter-avatar).
+This project is highly inspired by similiar open source projects like [avatar](https://github.com/laravolt/avatar) and [letter-avatar](https://github.com/yohangdev/letter-avatar).
+
+The fonts used in the extension are licensed under [SIL Open Font License](https://openfontlicense.org/) and [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 ## License
 
