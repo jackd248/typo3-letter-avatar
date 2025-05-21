@@ -119,7 +119,7 @@ class AvatarViewHelper extends AbstractViewHelper
             'fontPath' => $this->arguments['fontPath'] ?: ConfigurationUtility::get('fontPath'),
             'imageFormat' => $this->arguments['imageFormat'] ? ImageFormat::tryFrom($this->arguments['imageFormat']) : ConfigurationUtility::get('imageFormat', ImageFormat::class),
             'transform' => $this->arguments['transform'] ? Transform::tryFrom($this->arguments['transform']) : ConfigurationUtility::get('transform', Transform::class),
-            'shape' => $this->arguments['shape'] ? Transform::tryFrom($this->arguments['shape']) : ConfigurationUtility::get('shape', Shape::class),
+            'shape' => $this->arguments['shape'] ? Shape::tryFrom($this->arguments['shape']) : ConfigurationUtility::get('shape', Shape::class),
         ];
 
         $avatarService = Avatar::create(...$configuration);
