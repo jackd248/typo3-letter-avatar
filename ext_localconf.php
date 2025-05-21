@@ -22,7 +22,8 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
     'fontSize' => 0.5,
 
     // Font path
-    'fontPath' => 'EXT:typo3_letter_avatar/Resources/Public/Fonts/arial-bold.ttf',
+    // Attention: this entry will override the 'fontPath' configuration from the extension settings
+    // 'fontPath' => 'EXT:typo3_letter_avatar/Resources/Public/Fonts/OpenSans-Bold.ttf',
 
     // Convert initial letter in uppercase, lowercase or keep as is
     'transform' => \KonradMichalik\Typo3LetterAvatar\Enum\Transform::NONE,
