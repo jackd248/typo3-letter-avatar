@@ -11,7 +11,7 @@
 > [!WARNING]
 > Under active development
 
-This extension generates colorful backend user avatars using name initial letters.
+This extension generates colorful backend user avatars using name initials letter.
 
 ![user-list.jpg](Documentation/Images/user-list.jpg)
 
@@ -76,8 +76,6 @@ Use the extension configuration under `Admin Tools > Settings > Extension Config
 The [default configuration](ext_localconf.php#L17) can be easily overridden in your own extension. You can use the following code snippet to create a custom configuration:
 
 ```php
-<?php
-
 // add custom theme
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['typo3_letter_avatar']['configuration']['themes']['customTheme'] = [
     'foregrounds' => [
@@ -193,7 +191,7 @@ ddev install all
 
 ## Credits
 
-This project is highly inspired by similiar open source projects like [avatar](https://github.com/laravolt/avatar) and [letter-avatar](https://github.com/yohangdev/letter-avatar).
+This project is highly inspired by similar open source projects like [avatar](https://github.com/laravolt/avatar) and [letter-avatar](https://github.com/yohangdev/letter-avatar).
 
 The fonts used in the extension are licensed under [SIL Open Font License](https://openfontlicense.org/) and [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
