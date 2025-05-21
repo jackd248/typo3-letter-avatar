@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3LetterAvatar\Image\Driver;
 
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
+use KonradMichalik\Typo3LetterAvatar\Enum\Shape;
 use KonradMichalik\Typo3LetterAvatar\Image\AbstractImageProvider;
 use KonradMichalik\Typo3LetterAvatar\Image\LetterAvatarInterface;
 use KonradMichalik\Typo3LetterAvatar\Utility\PathUtility;
@@ -25,7 +26,11 @@ class Gd extends AbstractImageProvider implements LetterAvatarInterface
         $bgColor = $this->allocateColor($canvas, $this->colorizeService->resolveBackgroundColor());
         $fgColor = $this->allocateColor($canvas, $this->colorizeService->resolveForegroundColor());
 
-        imagefilledellipse($canvas, $this->size / 2, $this->size / 2, $this->size, $this->size, $bgColor);
+        if ($this->shape === Shape::CIRCLE) {
+            imagefilledellipse($canvas, $this->size / 2, $this->size / 2, $this->size, $this->size, $bgColor);
+        } elseif ($this->shape === Shape::SQUARE) {
+            imagefilledrectangle($canvas, 0, 0, $this->size, $this->size, $bgColor);
+        }
 
         $this->drawText($canvas, $initials, $fgColor);
 

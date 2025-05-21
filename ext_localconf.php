@@ -36,6 +36,9 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
     // Image format for processed images, png or jpeg
     'imageFormat' => \KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat::PNG,
 
+    // Shape
+    'shape' => \KonradMichalik\Typo3LetterAvatar\Enum\Shape::CIRCLE,
+
     // Color mode
     // Attention: this entry will override the 'colorMode' configuration from the extension settings
     // 'colorMode' => \KonradMichalik\Typo3LetterAvatar\Enum\ColorMode::STRINGIFY->value,

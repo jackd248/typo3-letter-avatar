@@ -13,5 +13,6 @@ interface LetterAvatarInterface
     public function save(?string $path = null, ImageFormat $format = ImageFormat::PNG, int $quality = 90): string;
 
     public function getImagePath(?string $filename = null): string;
+
     public function getWebPath(?string $filename = null): string;
 }

@@ -6,6 +6,7 @@ namespace KonradMichalik\Typo3LetterAvatar\ViewHelpers;
 
 use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
+use KonradMichalik\Typo3LetterAvatar\Enum\Shape;
 use KonradMichalik\Typo3LetterAvatar\Enum\Transform;
 use KonradMichalik\Typo3LetterAvatar\Image\Avatar;
 use KonradMichalik\Typo3LetterAvatar\Utility\ConfigurationUtility;
@@ -73,7 +74,7 @@ class AvatarViewHelper extends AbstractViewHelper
         $this->registerArgument(
             'mode',
             'string',
-            'Color mode of the avatar (e.g., CUSTOM)',
+            'Color mode of the avatar (e.g. custom)',
             false
         );
         $this->registerArgument(
@@ -85,13 +86,19 @@ class AvatarViewHelper extends AbstractViewHelper
         $this->registerArgument(
             'imageFormat',
             'string',
-            'Image format of the avatar (e.g., PNG)',
+            'Image format of the avatar (e.g. png or jpeg)',
             false
         );
         $this->registerArgument(
             'transform',
             'string',
-            'Text transformation (e.g., NONE)',
+            'Text transformation (e.g. uppercase)',
+            false
+        );
+        $this->registerArgument(
+            'shape',
+            'string',
+            'Image shape (e.g. circle or square)',
             false
         );
     }
@@ -112,6 +119,7 @@ class AvatarViewHelper extends AbstractViewHelper
             'fontPath' => $this->arguments['fontPath'] ?: ConfigurationUtility::get('fontPath'),
             'imageFormat' => $this->arguments['imageFormat'] ? ImageFormat::tryFrom($this->arguments['imageFormat']) : ConfigurationUtility::get('imageFormat', ImageFormat::class),
             'transform' => $this->arguments['transform'] ? Transform::tryFrom($this->arguments['transform']) : ConfigurationUtility::get('transform', Transform::class),
+            'shape' => $this->arguments['shape'] ? Transform::tryFrom($this->arguments['shape']) : ConfigurationUtility::get('shape', Shape::class),
         ];
 
         $avatarService = Avatar::create(...$configuration);

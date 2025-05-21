@@ -14,6 +14,7 @@ class Avatar
     public static function create(...$args): LetterAvatarInterface
     {
         $imageDriver = $args['imageDriver'] ?? $GLOBALS['TYPO3_CONF_VARS']['GFX']['processor'];
+        unset($args['imageDriver']);
 
         switch ($imageDriver) {
             case ImageDriver::IMAGICK:
