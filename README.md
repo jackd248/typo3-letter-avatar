@@ -64,15 +64,15 @@ Use the extension configuration under `Admin Tools > Settings > Extension Config
 
 * **Color mode**: Select the color mode for the avatar generation. Available modes:
   * `STRINGIFY`: Creates a random color based on the name.
-  * `RANDOM`: Randomly selected colors. See available [color pairs](ext_localconf.php#44).
+  * `RANDOM`: Randomly selected colors. See available [color pairs](ext_localconf.php#L44).
   * `THEME`: Select this mode to choose a predefined color theme.
-  * `PAIRS`: Randomly selected color pairs. See available [color pairs](ext_localconf.php#71).
+  * `PAIRS`: Randomly selected color pairs. See available [color pairs](ext_localconf.php#L71).
   * `CUSTOM`: Custom colors defined in the configuration. Only available via the custom configuration.
-* **Theme**: Only for color mode "Theme". Select the color theme (collection of foreground and background colors) for the avatar generation. See available [themes](ext_localconf.php#107).
+* **Theme**: Only for color mode "Theme". Select the color theme (collection of foreground and background colors) for the avatar generation. See available [themes](ext_localconf.php#L107).
 
 ### Custom
 
-The [default configuration](ext_localconf.php#107) can be easily overridden in your own extension. You can use the following code snippet to create a custom configuration:
+The [default configuration](ext_localconf.php#L107) can be easily overridden in your own extension. You can use the following code snippet to create a custom configuration:
 
 ```php
 <?php
@@ -121,7 +121,7 @@ $avatar->getWebPath();
 ```
 
 > [!NOTE]
-> See available parameters in the [AbstractImageProvider](Classes/Image/AbstractImageProvider.php#17)
+> See available parameters in the [AbstractImageProvider](Classes/Image/AbstractImageProvider.php#L18)
 
 ### ViewHelper
 
@@ -180,7 +180,7 @@ class ModifyLetterAvatarEventListener
 ```
 
 > [!NOTE]
-> Don't forget to [register the event listener](https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ApiOverview/Events/EventDispatcher/Index.html#registering-the-event-listener-via-file-services-yaml).
+> Remember to [register the event listener](https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ApiOverview/Events/EventDispatcher/Index.html#registering-the-event-listener-via-file-services-yaml).
 
 ## Development
 
