@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3LetterAvatar\Image\Driver;
 
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
+use KonradMichalik\Typo3LetterAvatar\Enum\Shape;
 use KonradMichalik\Typo3LetterAvatar\Image\AbstractImageProvider;
 use KonradMichalik\Typo3LetterAvatar\Image\LetterAvatarInterface;
 use KonradMichalik\Typo3LetterAvatar\Utility\PathUtility;
@@ -16,7 +17,14 @@ class Gmagick extends AbstractImageProvider implements LetterAvatarInterface
     public function generate(): \Gmagick
     {
         $canvas = $this->createCanvas();
-        $this->drawEllipse($canvas, $this->colorizeService->resolveBackgroundColor());
+        $backgroundColor = $this->colorizeService->resolveBackgroundColor();
+
+        if ($this->shape === Shape::CIRCLE) {
+            $this->drawEllipse($canvas, $backgroundColor);
+        } elseif ($this->shape === Shape::SQUARE) {
+            $this->drawSquare($canvas, $backgroundColor);
+        }
+
         $this->drawText(
             $canvas,
             StringUtility::resolveInitials($this->name, $this->initials, $this->transform),
@@ -56,6 +64,14 @@ class Gmagick extends AbstractImageProvider implements LetterAvatarInterface
         $draw = new \GmagickDraw();
         $draw->setfillcolor($color);
         $draw->ellipse($this->size / 2, $this->size / 2, $this->size / 2, $this->size / 2, 0, 360);
+        $canvas->drawimage($draw);
+    }
+
+    private function drawSquare(\Gmagick $canvas, string $color): void
+    {
+        $draw = new \GmagickDraw();
+        $draw->setfillcolor($color);
+        $draw->rectangle(0, 0, $this->size, $this->size);
         $canvas->drawimage($draw);
     }
 

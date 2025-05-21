@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3LetterAvatar\Image\Driver;
 
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
+use KonradMichalik\Typo3LetterAvatar\Enum\Shape;
 use KonradMichalik\Typo3LetterAvatar\Image\AbstractImageProvider;
 use KonradMichalik\Typo3LetterAvatar\Image\LetterAvatarInterface;
 use KonradMichalik\Typo3LetterAvatar\Utility\PathUtility;
@@ -16,7 +17,14 @@ class Imagick extends AbstractImageProvider implements LetterAvatarInterface
     public function generate(): \Imagick
     {
         $canvas = $this->createCanvas();
-        $this->drawCircle($canvas, $this->colorizeService->resolveBackgroundColor());
+        $backgroundColor = $this->colorizeService->resolveBackgroundColor();
+
+        if ($this->shape === Shape::CIRCLE) {
+            $this->drawCircle($canvas, $backgroundColor);
+        } elseif ($this->shape === Shape::SQUARE) {
+            $this->drawSquare($canvas, $backgroundColor);
+        }
+
         $this->drawText(
             $canvas,
             StringUtility::resolveInitials($this->name, $this->initials, $this->transform),
@@ -57,6 +65,14 @@ class Imagick extends AbstractImageProvider implements LetterAvatarInterface
         $circle->setFillColor(new \ImagickPixel($color));
         $circle->circle($this->size / 2, $this->size / 2, $this->size / 2, 0);
         $canvas->drawImage($circle);
+    }
+
+    private function drawSquare(\Imagick $canvas, string $color): void
+    {
+        $square = new \ImagickDraw();
+        $square->setFillColor(new \ImagickPixel($color));
+        $square->rectangle(0, 0, $this->size, $this->size);
+        $canvas->drawImage($square);
     }
 
     private function drawText(\Imagick $canvas, string $text, string $color): void

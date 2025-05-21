@@ -7,6 +7,7 @@ namespace KonradMichalik\Typo3LetterAvatar\Image;
 use KonradMichalik\Typo3LetterAvatar\Configuration;
 use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
+use KonradMichalik\Typo3LetterAvatar\Enum\Shape;
 use KonradMichalik\Typo3LetterAvatar\Enum\Transform;
 use KonradMichalik\Typo3LetterAvatar\Service\Colorize;
 use KonradMichalik\Typo3LetterAvatar\Utility\PathUtility;
@@ -27,6 +28,7 @@ abstract class AbstractImageProvider
         public string $theme = '',
         public ImageFormat $imageFormat = ImageFormat::PNG,
         public Transform $transform = Transform::NONE,
+        public Shape $shape = Shape::CIRCLE,
     ) {
         $this->colorizeService = new Colorize($this);
     }
@@ -54,6 +56,7 @@ abstract class AbstractImageProvider
             $this->mode->value,
             $this->theme,
             $this->transform->value,
+            $this->shape->value,
         ];
         return md5(implode('_', $parts));
     }

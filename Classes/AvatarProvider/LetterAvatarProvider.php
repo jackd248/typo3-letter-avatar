@@ -6,6 +6,7 @@ namespace KonradMichalik\Typo3LetterAvatar\AvatarProvider;
 
 use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
+use KonradMichalik\Typo3LetterAvatar\Enum\Shape;
 use KonradMichalik\Typo3LetterAvatar\Enum\Transform;
 use KonradMichalik\Typo3LetterAvatar\Event\BackendUserAvatarConfigurationEvent;
 use KonradMichalik\Typo3LetterAvatar\Image\Avatar;
@@ -37,6 +38,7 @@ class LetterAvatarProvider implements AvatarProviderInterface
             'fontPath' => ConfigurationUtility::get('fontPath'),
             'imageFormat' => ConfigurationUtility::get('imageFormat', ImageFormat::class),
             'transform' => ConfigurationUtility::get('transform', Transform::class),
+            'shape' => ConfigurationUtility::get('shape', Shape::class),
         ];
 
         $this->eventDispatcher->dispatch(new BackendUserAvatarConfigurationEvent($backendUser, $configuration));
