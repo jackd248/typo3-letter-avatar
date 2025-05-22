@@ -58,8 +58,8 @@ class Colorize
     {
         if (empty($this->foregroundColors) || empty($this->backgroundColors)) {
             $pairColors = $this->getConfigRandom('pairs');
-            $this->foregroundColors = $pairColors['foreground'];
-            $this->backgroundColors = $pairColors['background'];
+            $this->foregroundColors = [$pairColors['foreground']];
+            $this->backgroundColors = [$pairColors['background']];
         }
     }
 
