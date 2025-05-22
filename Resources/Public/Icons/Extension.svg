@@ -1,8 +1,16 @@
-<svg width="169" height="169" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-    <g transform="matrix(1.06271,0,0,1.06271,-3.7571,-3.25207)">
-        <circle cx="238.783" cy="238.308" r="235.248" style="fill:rgb(176,190,197);"/>
+<svg width="150" height="150" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(0.959329,0,0,0.792091,0.280909,0.836891)">
+        <rect x="-0.293" y="-1.057" width="521.198" height="631.24" style="fill:rgb(78,102,136);"/>
     </g>
-    <g transform="matrix(1,0,0,1,51.2036,-47.4481)">
-        <text x="25.833px" y="401.839px" style="font-family:'LucidaGrande', 'Lucida Grande', sans-serif;font-weight:500;font-size:291.667px;fill:white;">LA</text>
+    <g>
+        <g transform="matrix(0.984358,0,0,0.984358,-11.466,-0.225396)">
+            <circle cx="265.621" cy="254.202" r="180.791" style="fill:rgb(112,192,187);"/>
+        </g>
+        <g transform="matrix(0.984358,0,0,0.984358,-11.466,-0.225396)">
+            <path d="M265.621,62.111C371.638,62.111 457.711,148.184 457.711,254.202C457.711,360.219 371.638,446.292 265.621,446.292C159.603,446.292 73.53,360.219 73.53,254.202C73.53,148.184 159.603,62.111 265.621,62.111ZM265.621,84.71C172.076,84.71 96.129,160.657 96.129,254.202C96.129,347.747 172.076,423.693 265.621,423.693C359.166,423.693 435.112,347.747 435.112,254.202C435.112,160.657 359.166,84.71 265.621,84.71Z" style="fill:rgb(227,238,178);"/>
+        </g>
+        <g transform="matrix(0.889816,0,0,0.889816,132.505,146.107)">
+            <path d="M106.445,206.09L106.445,206.177L22.583,206.177L22.583,17.7L51.025,17.7L51.025,179.443L95.408,179.443L176.264,5.772L266.23,206.09L235.102,206.09L215.327,160.313L134.638,160.313L113.642,206.09L106.445,206.09ZM203.73,133.58L175.776,69.493L146.479,133.58L203.73,133.58Z" style="fill:rgb(227,238,178);"/>
+        </g>
     </g>
 </svg>
