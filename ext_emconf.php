@@ -3,7 +3,7 @@
 /** @var string $_EXTKEY */
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Letter Avatar',
-    'description' => '',
+    'description' => 'This TYPO3 extension generates colorful backend user avatars using name initials letter.',
     'category' => 'module',
     'author' => 'Konrad Michalik',
     'author_email' => 'hej@konradmichalik.dev',
