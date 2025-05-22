@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use KonradMichalik\Typo3LetterAvatar\Configuration;
-
 defined('TYPO3') || die();
 
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['backend']['avatarProviders']['letterAvatar'] = [
@@ -14,7 +12,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['backend']['avatarProviders']['letterAvat
 /*
 * Default configuration
 */
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] = [
+$GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3LetterAvatar\Configuration::EXT_KEY]['configuration'] = [
     // Image size, in pixel
     'size' => 50,
 
@@ -100,6 +98,38 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] 
         [
             'background' => '#213448',
             'foreground' => '#ECEFCA',
+        ],
+        [
+            'background' => '#626F47',
+            'foreground' => '#F0BB78',
+        ],
+        [
+            'background' => '#183B4E',
+            'foreground' => '#DDA853',
+        ],
+        [
+            'background' => '#A86523',
+            'foreground' => '#FCEFCB',
+        ],
+        [
+            'background' => '#B6B09F',
+            'foreground' => '#F2F2F2',
+        ],
+        [
+            'background' => '#4B352A',
+            'foreground' => '#B2CD9C',
+        ],
+        [
+            'background' => '#333446',
+            'foreground' => '#B8CFCE',
+        ],
+        [
+            'background' => '#537D5D',
+            'foreground' => '#D2D0A0',
+        ],
+        [
+            'background' => '#393E46',
+            'foreground' => '#DFD0B8',
         ],
     ],
 
