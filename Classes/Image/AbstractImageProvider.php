@@ -54,7 +54,11 @@ abstract class AbstractImageProvider
 
     public function getImagePath(?string $filename = null): string
     {
-        return PathUtility::getImageFolder() . ($filename ?? ($this->configToHash() . '.' . $this->imageFormat->value));
+        return PathUtility::getImageFolder() . (
+            $filename !== null && $filename !== ''
+                ? $filename
+                : ($this->configToHash() . '.' . $this->imageFormat->value)
+        );
     }
 
     public function getWebPath(?string $filename = null): string

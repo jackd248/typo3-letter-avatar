@@ -62,6 +62,8 @@ class StringUtility
 
     protected static function splitName(string $name): array
     {
-        return array_filter(explode(' ', $name), fn($word) => $word !== '' && $word !== ',');
+        // Remove multiple spaces and split by single space
+        $cleaned = preg_replace('/\s+/', ' ', trim($name));
+        return array_filter(explode(' ', $cleaned), fn(string $word): bool => $word !== '' && $word !== ',');
     }
 }
