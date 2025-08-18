@@ -6,8 +6,12 @@
 
 [![Latest Stable Version](https://typo3-badges.dev/badge/typo3_letter_avatar/version/shields.svg)](https://extensions.typo3.org/extension/typo3_letter_avatar)
 [![Supported TYPO3 versions](https://typo3-badges.dev/badge/typo3_letter_avatar/typo3/shields.svg)](https://extensions.typo3.org/extension/typo3_letter_avatar)
+[![Supported PHP Versions](https://img.shields.io/packagist/dependency-v/konradmichalik/typo3-letter-avatar/php?logo=php)](https://packagist.org/packages/konradmichalik/typo3-letter-avatar)
+![Stability](https://typo3-badges.dev/badge/typo3_letter_avatar/stability/shields.svg)
+[![Coverage](https://img.shields.io/coverallsCoverage/github/jackd248/typo3-letter-avatar?logo=coveralls)](https://coveralls.io/github/jackd248/typo3-letter-avatar)
+[![CGL](https://img.shields.io/github/actions/workflow/status/jackd248/typo3-letter-avatar/cgl.yml?label=cgl&logo=github)](https://github.com/jackd248/typo3-letter-avatar/actions/workflows/cgl.yml)
+[![Tests](https://img.shields.io/github/actions/workflow/status/jackd248/typo3-letter-avatar/tests.yml?label=tests&logo=github)](https://github.com/jackd248/typo3-letter-avatar/actions/workflows/tests.yml)
 [![License](https://poser.pugx.org/konradmichalik/typo3-letter-avatar/license)](LICENSE.md)
-
 </div>
 
 This TYPO3 extension generates colorful backend user avatars using name initials letter.
