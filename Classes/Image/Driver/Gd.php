@@ -2,6 +2,25 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the TYPO3 CMS extension "typo3_letter_avatar".
+ *
+ * Copyright (C) 2025 Konrad Michalik <hej@konradmichalik.dev>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 namespace KonradMichalik\Typo3LetterAvatar\Image\Driver;
 
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
@@ -14,7 +33,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class Gd extends AbstractImageProvider implements LetterAvatarInterface
 {
-    public function generate()
+    public function generate(): \GdImage|false
     {
         $initials = StringUtility::resolveInitials($this->name, $this->initials, $this->transform);
         $canvas = $this->createCanvas();
@@ -69,7 +88,7 @@ class Gd extends AbstractImageProvider implements LetterAvatarInterface
         return imagecolorallocate($canvas, $r, $g, $b);
     }
 
-    private function drawText($canvas, string $text, $color): void
+    private function drawText(\GdImage $canvas, string $text, int $color): void
     {
         $fontPath = GeneralUtility::getFileAbsFileName($this->fontPath);
         $fontSize = $this->size * $this->fontSize;

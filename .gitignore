@@ -1,7 +1,6 @@
 .idea
 .test/
 config
-composer.lock
 public
 !Resources/Public
 vendor
@@ -13,3 +12,4 @@ node_modules
 php-cs-fixer.xml
 phpstan.xml
 .Build/
+.phpunit.result.cache

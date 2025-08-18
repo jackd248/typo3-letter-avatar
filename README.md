@@ -14,18 +14,20 @@ This TYPO3 extension generates colorful backend user avatars using name initials
 
 ![user-list.jpg](Documentation/Images/user-list.jpg)
 
-## Features
+## ✨ Features
 
 * Generates out-of-the-box colorful avatars for backend users
 * Easily customizable and flexible configuration
 * Provides different predefined color modes and themes
 * Supports frontend user avatars with an additional viewhelper
 
+
+## 🔥 Installation
+
 ## Requirements
 
-* TYPO3 >= 11.5 & PHP 8.1+
-
-## Installation
+* TYPO3 >= 11.5 
+* PHP 8.1+
 
 ### Composer
 
@@ -43,7 +45,7 @@ composer require konradmichalik/typo3-letter-avatar
 
 Download the zip file from [TYPO3 extension repository (TER)](https://extensions.typo3.org/extension/typo3_letter_avatar).
 
-## Setup
+### Setup
 
 Set up the extension after the installation:
 
@@ -53,7 +55,7 @@ vendor/bin/typo3 extension:setup --extension=typo3_letter_avatar
 
 The extension will automatically generate avatars for all existing backend users.
 
-## Configuration
+## 🧰 Configuration
 
 Use the out-of-the-box configuration available in the extension settings or customize it in your own extension.
 
@@ -98,7 +100,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['typo3_letter_avatar']['configuration']['
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['typo3_letter_avatar']['configuration']['theme'] = 'customTheme'
 ```
 
-## Usage
+## ⚡ Usage
 
 The extension works for backend users out of the box.
 
@@ -180,20 +182,18 @@ class ModifyLetterAvatarEventListener
 > [!NOTE]
 > Remember to [register the event listener](https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ApiOverview/Events/EventDispatcher/Index.html#registering-the-event-listener-via-file-services-yaml).
 
-## Development
+## 🧑‍💻 Contributing
 
-Use the following ddev command to easily install all supported TYPO3 versions for locale development.
+Please have a look at [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-```bash
-ddev install all
-```
-
-## Credits
+## 💎 Credits
 
 This project is highly inspired by similar open source projects like [avatar](https://github.com/laravolt/avatar) and [letter-avatar](https://github.com/yohangdev/letter-avatar).
 
 The fonts used in the extension are licensed under [SIL Open Font License](https://openfontlicense.org/) and [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
-## License
 
-This project is licensed under [GNU General Public License 2.0 (or later)](LICENSE.md).
+## ⭐ License
+
+This project is licensed
+under [GNU General Public License 2.0 (or later)](LICENSE.md).
