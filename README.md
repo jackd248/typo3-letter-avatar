@@ -61,130 +61,21 @@ The extension will automatically generate avatars for all existing backend users
 
 ## 🧰 Configuration
 
-Use the out-of-the-box configuration available in the extension settings or customize it in your own extension.
+See [Configuration Documentation](Documentation/Configuration.md) for detailed setup instructions including:
 
-### Extension Configuration
-
-Use the extension configuration under `Admin Tools > Settings > Extension Configuration > typo3_letter_avatar` for the following options:
-
-* **Color mode**: Select the color mode for the avatar generation. Available modes:
-  * `STRINGIFY`: Creates a random color based on the name.
-  * `RANDOM`: Randomly selected colors. See available [color pairs](ext_localconf.php#L44).
-  * `THEME`: Select this mode to choose a predefined color theme.
-  * `PAIRS`: Randomly selected color pairs. See available [color pairs](ext_localconf.php#L71).
-  * `CUSTOM`: Custom colors defined in the configuration. Only available via the custom configuration.
-* **Theme**: Only for color mode "Theme". Select the color theme (collection of foreground and background colors) for the avatar generation. See available [themes](ext_localconf.php#L107).
-* **Font**: Select the desired font for the letter avatar generation. Choose between several various font (types).
-
-### Custom
-
-The [default configuration](ext_localconf.php#L17) can be easily overridden in your own extension. You can use the following code snippet to create a custom configuration:
-
-```php
-// add custom theme
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['typo3_letter_avatar']['configuration']['themes']['customTheme'] = [
-    'foregrounds' => [
-        '#FFFFFF',
-        '#000000',
-        '#333333',
-        '#FFFAFA',
-        '#F5F5F5',
-    ],
-    'backgrounds' => [
-        '#1E90FF',
-        '#32CD32',
-        '#FF4500',
-        '#FFD700',
-        '#8A2BE2',
-    ],
-];
-
-// set custom theme
-// warning: this will override the extension setting
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['typo3_letter_avatar']['configuration']['theme'] = 'customTheme'
-```
+* Extension settings configuration
+* Custom themes and color modes
+* Code-based configuration examples
 
 ## ⚡ Usage
 
-The extension works for backend users out of the box.
+See [Usage Documentation](Documentation/Usage.md) for comprehensive usage examples including:
 
-### Reusage
-
-If you want to use it for other use cases, you can use the following code snippet to generate an avatar image:
-
-```php
-// Generate avatar entity
-$avatar = \KonradMichalik\Typo3LetterAvatar\Image\Avatar::create(
-    name: 'Konrad Michalik',
-    mode: KonradMichalik\Typo3LetterAvatar\Enum\ColorMode::RANDOM
-);
-// Save avatar image to default path
-$avatar->save();
-// Get web path of generated image
-$avatar->getWebPath();
-```
-
-> [!NOTE]
-> See available parameters in the [AbstractImageProvider](Classes/Image/AbstractImageProvider.php#L18)
-
-### ViewHelper
-
-You can use the `KonradMichalik\Typo3LetterAvatar\ViewHelpers\AvatarViewHelper` to generate an letter avatar image path in your Fluid templates, e.g. for frontend users:
-
-```html
-<html xmlns:letter="http://typo3.org/ns/KonradMichalik/Typo3LetterAvatar/ViewHelpers">
-
-<img src="{letter:avatar(name: 'John Doe')}" alt="Avatar of John Doe" />
-```
-
-> [!NOTE]
-> See available arguments in the [AvatarViewHelper](Classes/ViewHelpers/AvatarViewHelper.php).
-
-### Console Command
-
-Once the avatars are generated, you can use the console command to clear all avatars and implicitly regenerate them. Use the following console command to clear the generated avatars:
-
-```bash
-vendor/bin/typo3 avatar:clear
-```
-
-### EventListener
-
-You can use the `BackendUserAvatarConfigurationEvent` to modify the avatar configuration according to the current backend user:
-
-```php
-<?php
-
-declare(strict_types=1);
-
-namespace Vendor\Package\EventListener;
-
-use KonradMichalik\Typo3LetterAvatar\Enum\ColorMode;
-use KonradMichalik\Typo3LetterAvatar\Event\BackendUserAvatarConfigurationEvent;
-
-class ModifyLetterAvatarEventListener
-{
-    public function __invoke(BackendUserAvatarConfigurationEvent $event): void
-    {
-        $backendUser = $event->getBackendUser();
-        
-        /*
-         * Example: If the backend user is an admin, set the CUSTOM color mode and define custom colors.
-         */ 
-        if ($backendUser['admin'] === 1) {
-            $configuration = $event->getConfiguration();
-            $configuration['mode'] = ColorMode::CUSTOM;
-            $configuration['foreground'] = '#000000';
-            $configuration['background'] = '#FFFFFF';
-            
-            $event->setConfiguration($configuration);
-        }
-    }
-}
-```
-
-> [!NOTE]
-> Remember to [register the event listener](https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ApiOverview/Events/EventDispatcher/Index.html#registering-the-event-listener-via-file-services-yaml).
+* Backend user avatars (automatic)
+* Programmatic avatar generation
+* Fluid ViewHelper usage
+* Console commands
+* Event listener customization
 
 ## 🧑‍💻 Contributing
 
