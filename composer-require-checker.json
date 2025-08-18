@@ -1,6 +1,7 @@
 {
-	  "symbol-whitelist": [
+	"symbol-whitelist": [
 		"Gmagick",
+		"GmagickDraw",
 		"GdImage",
 		"Imagick",
 		"imagecolorallocate",
@@ -17,5 +18,5 @@
 		"imagettftext",
 		"ImagickDraw",
 		"ImagickPixel"
-	  ]
-	}
+	]
+}
