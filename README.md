@@ -28,7 +28,7 @@ This TYPO3 extension generates colorful backend user avatars using name initials
 
 ## 🔥 Installation
 
-## Requirements
+### Requirements
 
 * TYPO3 >= 11.5 
 * PHP 8.1+
