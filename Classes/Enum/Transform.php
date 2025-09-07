@@ -23,6 +23,12 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3LetterAvatar\Enum;
 
+/**
+ * Transform.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 enum Transform: string implements EnumInterface
 {
     case NONE = 'none';

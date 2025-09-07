@@ -28,6 +28,12 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
 
+/**
+ * ClearAvatarsCommandTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 final class ClearAvatarsCommandTest extends TestCase
 {
     private ClearAvatarsCommand $command;

@@ -23,4 +23,10 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3LetterAvatar\Enum;
 
+/**
+ * EnumInterface.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 interface EnumInterface extends \BackedEnum {}

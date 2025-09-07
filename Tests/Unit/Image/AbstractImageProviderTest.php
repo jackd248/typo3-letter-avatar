@@ -33,6 +33,12 @@ use KonradMichalik\Typo3LetterAvatar\Service\Colorize;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * AbstractImageProviderTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 final class AbstractImageProviderTest extends TestCase
 {
     private AbstractImageProvider $imageProvider;
@@ -47,24 +53,29 @@ final class AbstractImageProviderTest extends TestCase
         ];
 
         // Create anonymous class that extends AbstractImageProvider
-        $this->imageProvider = new class (
-            name: 'Test User',
-            size: 100,
-            fontSize: 0.5,
-            mode: ColorMode::CUSTOM,
-            foregroundColor: '#FFFFFF',
-            backgroundColor: '#000000'
-        ) extends AbstractImageProvider {
-            public function generate(): mixed
-            {
-                return 'mock-image';
-            }
+        $this->imageProvider = new
+/**
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
+class (
+    name: 'Test User',
+    size: 100,
+    fontSize: 0.5,
+    mode: ColorMode::CUSTOM,
+    foregroundColor: '#FFFFFF',
+    backgroundColor: '#000000'
+) extends AbstractImageProvider {
+    public function generate(): mixed
+    {
+        return 'mock-image';
+    }
 
-            public function save(?string $path = null, ImageFormat $format = ImageFormat::PNG, int $quality = 90): string
-            {
-                return '/mock/path/image.png';
-            }
-        };
+    public function save(?string $path = null, ImageFormat $format = ImageFormat::PNG, int $quality = 90): string
+    {
+        return '/mock/path/image.png';
+    }
+};
     }
 
     protected function tearDown(): void
@@ -145,29 +156,34 @@ final class AbstractImageProviderTest extends TestCase
     #[Test]
     public function constructorWithAllParameters(): void
     {
-        $provider = new class (
-            name: 'Full Name',
-            initials: 'FN',
-            size: 200,
-            fontSize: 0.8,
-            fontPath: 'EXT:test/font.ttf',
-            foregroundColor: '#FF0000',
-            backgroundColor: '#00FF00',
-            mode: ColorMode::PAIRS,
-            theme: 'test-theme',
-            imageFormat: ImageFormat::JPEG,
-            transform: Transform::UPPERCASE,
-            shape: Shape::SQUARE
-        ) extends AbstractImageProvider {
-            public function generate(): mixed
-            {
-                return null;
-            }
-            public function save(?string $path = null, ImageFormat $format = ImageFormat::PNG, int $quality = 90): string
-            {
-                return '';
-            }
-        };
+        $provider = new
+/**
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
+class (
+    name: 'Full Name',
+    initials: 'FN',
+    size: 200,
+    fontSize: 0.8,
+    fontPath: 'EXT:test/font.ttf',
+    foregroundColor: '#FF0000',
+    backgroundColor: '#00FF00',
+    mode: ColorMode::PAIRS,
+    theme: 'test-theme',
+    imageFormat: ImageFormat::JPEG,
+    transform: Transform::UPPERCASE,
+    shape: Shape::SQUARE
+) extends AbstractImageProvider {
+    public function generate(): mixed
+    {
+        return null;
+    }
+    public function save(?string $path = null, ImageFormat $format = ImageFormat::PNG, int $quality = 90): string
+    {
+        return '';
+    }
+};
 
         self::assertSame('Full Name', $provider->name);
         self::assertSame('FN', $provider->initials);

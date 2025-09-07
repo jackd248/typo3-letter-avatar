@@ -27,6 +27,12 @@ use KonradMichalik\Typo3LetterAvatar\Configuration;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * ConfigurationTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 final class ConfigurationTest extends TestCase
 {
     #[Test]

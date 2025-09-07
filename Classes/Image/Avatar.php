@@ -28,6 +28,12 @@ use KonradMichalik\Typo3LetterAvatar\Image\Driver\Gd;
 use KonradMichalik\Typo3LetterAvatar\Image\Driver\Gmagick;
 use KonradMichalik\Typo3LetterAvatar\Image\Driver\Imagick;
 
+/**
+ * Avatar.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class Avatar
 {
     public static function create(...$args): LetterAvatarInterface

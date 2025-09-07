@@ -28,6 +28,12 @@ use KonradMichalik\Typo3LetterAvatar\Utility\PathUtility;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * PathUtilityTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 final class PathUtilityTest extends TestCase
 {
     protected function setUp(): void

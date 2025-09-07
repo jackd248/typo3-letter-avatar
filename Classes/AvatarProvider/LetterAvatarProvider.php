@@ -35,6 +35,12 @@ use TYPO3\CMS\Backend\Backend\Avatar\Image;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * LetterAvatarProvider.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class LetterAvatarProvider implements AvatarProviderInterface
 {
     public function __construct(protected readonly EventDispatcher $eventDispatcher) {}

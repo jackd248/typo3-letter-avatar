@@ -31,6 +31,12 @@ use KonradMichalik\Typo3LetterAvatar\Enum\Transform;
 use KonradMichalik\Typo3LetterAvatar\Service\Colorize;
 use KonradMichalik\Typo3LetterAvatar\Utility\PathUtility;
 
+/**
+ * AbstractImageProvider.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 abstract class AbstractImageProvider
 {
     protected ?Colorize $colorizeService = null;

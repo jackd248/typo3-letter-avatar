@@ -28,6 +28,12 @@ use KonradMichalik\Typo3LetterAvatar\Utility\StringUtility;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * StringUtilityTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 final class StringUtilityTest extends TestCase
 {
     #[Test]
