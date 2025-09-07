@@ -29,6 +29,12 @@ use KonradMichalik\Typo3LetterAvatar\Image\AbstractImageProvider;
 use KonradMichalik\Typo3LetterAvatar\Utility\ConfigurationUtility;
 use KonradMichalik\Typo3LetterAvatar\Utility\StringUtility;
 
+/**
+ * Colorize.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class Colorize
 {
     private array $foregroundColors = [];

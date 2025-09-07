@@ -32,18 +32,11 @@ use KonradMichalik\Typo3LetterAvatar\Utility\ConfigurationUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
-* This ViewHelper generates the URL of an avatar image based on the provided configuration.
-* You can specify properties such as name, initials, size, font, colors and transformation.
-* If the avatar image does not already exist, it will be generated and saved.
-* Useful for generating letter avatars for TYPO3 frontend users.
-*
-* Example usage:
-* ```html
-* <html xmlns:letter="http://typo3.org/ns/KonradMichalik/Typo3LetterAvatar/ViewHelpers">
-*
-* <img src="{letter:avatar(name: 'John Doe')}" alt="Avatar of John Doe" />
-* ```
-*/
+ * AvatarViewHelper.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class AvatarViewHelper extends AbstractViewHelper
 {
     public function initializeArguments(): void

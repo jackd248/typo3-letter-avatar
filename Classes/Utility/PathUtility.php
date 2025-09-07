@@ -27,6 +27,12 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility as CorePathUtility;
 
+/**
+ * PathUtility.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class PathUtility
 {
     public static function getImageFolder(): string

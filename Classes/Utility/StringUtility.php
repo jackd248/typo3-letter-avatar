@@ -25,6 +25,12 @@ namespace KonradMichalik\Typo3LetterAvatar\Utility;
 
 use KonradMichalik\Typo3LetterAvatar\Enum\Transform;
 
+/**
+ * StringUtility.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class StringUtility
 {
     public static function resolveInitials(string $name, string $preSetInitials = '', Transform $transform = Transform::NONE): string

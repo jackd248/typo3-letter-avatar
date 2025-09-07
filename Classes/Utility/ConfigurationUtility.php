@@ -28,6 +28,12 @@ use KonradMichalik\Typo3LetterAvatar\Enum\EnumInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * ConfigurationUtility.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ConfigurationUtility
 {
     public static function get(string $key, ?string $expectedEnumClass = null): array|string|int|float|bool|EnumInterface|null

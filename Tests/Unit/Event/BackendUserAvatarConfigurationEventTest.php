@@ -27,6 +27,12 @@ use KonradMichalik\Typo3LetterAvatar\Event\BackendUserAvatarConfigurationEvent;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * BackendUserAvatarConfigurationEventTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 final class BackendUserAvatarConfigurationEventTest extends TestCase
 {
     #[Test]

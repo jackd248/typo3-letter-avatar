@@ -31,6 +31,12 @@ use KonradMichalik\Typo3LetterAvatar\Image\Driver\Imagick;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * AvatarTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 final class AvatarTest extends TestCase
 {
     protected function setUp(): void

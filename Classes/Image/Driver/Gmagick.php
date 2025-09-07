@@ -31,6 +31,12 @@ use KonradMichalik\Typo3LetterAvatar\Utility\PathUtility;
 use KonradMichalik\Typo3LetterAvatar\Utility\StringUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * Gmagick.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class Gmagick extends AbstractImageProvider implements LetterAvatarInterface
 {
     public function generate(): \Gmagick

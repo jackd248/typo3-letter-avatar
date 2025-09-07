@@ -23,6 +23,12 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3LetterAvatar\Enum;
 
+/**
+ * ColorMode.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 enum ColorMode: string implements EnumInterface
 {
     case CUSTOM = 'custom';

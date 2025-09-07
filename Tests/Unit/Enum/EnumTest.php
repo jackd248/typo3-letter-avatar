@@ -32,6 +32,12 @@ use KonradMichalik\Typo3LetterAvatar\Enum\Transform;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * EnumTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 final class EnumTest extends TestCase
 {
     #[Test]

@@ -30,6 +30,12 @@ use KonradMichalik\Typo3LetterAvatar\Service\Colorize;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * ColorizeTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 final class ColorizeTest extends TestCase
 {
     private AbstractImageProvider $avatarProvider;

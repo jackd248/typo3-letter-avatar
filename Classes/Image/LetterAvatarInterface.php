@@ -25,6 +25,12 @@ namespace KonradMichalik\Typo3LetterAvatar\Image;
 
 use KonradMichalik\Typo3LetterAvatar\Enum\ImageFormat;
 
+/**
+ * LetterAvatarInterface.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 interface LetterAvatarInterface
 {
     public function generate(): mixed;

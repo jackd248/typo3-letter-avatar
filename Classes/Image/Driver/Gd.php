@@ -31,6 +31,12 @@ use KonradMichalik\Typo3LetterAvatar\Utility\PathUtility;
 use KonradMichalik\Typo3LetterAvatar\Utility\StringUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * Gd.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class Gd extends AbstractImageProvider implements LetterAvatarInterface
 {
     public function generate(): \GdImage|false

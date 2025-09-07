@@ -23,6 +23,12 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3LetterAvatar\Event;
 
+/**
+ * BackendUserAvatarConfigurationEvent.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class BackendUserAvatarConfigurationEvent
 {
     final public const NAME = 'typo3_letter_avatar.backend_user.modify_avatar_provider';
