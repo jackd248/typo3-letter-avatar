@@ -36,6 +36,7 @@ $header = PhpCsFixerConfig\Rules\Header::create(
 $config = CodingStandards\CsFixerConfig::create();
 $finder = $config->getFinder()
     ->in(__DIR__)
+    ->notPath(['ext_emconf.php'])
     ->ignoreVCSIgnored(true)
     ->ignoreDotFiles(false)
 ;
