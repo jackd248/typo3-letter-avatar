@@ -5,6 +5,7 @@ on:
       - main
       - 2.x-dev
       - 1.x
+      - 'renovate/**'
   pull_request: ~
 
 jobs:
